@@ -21,4 +21,4 @@ def main():
     rounds = get_number_of_rounds()
 
     # Select which stages to use
-    courses = get_courses()
+    courses = get_courses(rounds)

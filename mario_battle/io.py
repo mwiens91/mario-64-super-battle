@@ -4,9 +4,13 @@ All using the command line, at present.
 """
 
 from collections import OrderedDict
-from colorama import Style
+from colorama import Fore, Style
 from mario_battle.constants import COURSE_DICTIONARY, MARIO_ASCII_ART
 
+
+class TooFewCoursesError(Exception):
+    """An exception for when too few courses are selected."""
+    pass
 
 def print_courses(course_dict=COURSE_DICTIONARY, show_played=True):
     """Prints a set of Mario 64 courses.
@@ -55,7 +59,11 @@ def get_player_names():
     Returns:
         A tuple of two strings, containing the player names.
     """
-    return ("Matt", "Branko")
+    player1 = input("player 1: ")
+    player2 = input("player 2: ")
+    print()
+
+    return (player1.strip(), player2.strip())
 
 def get_number_of_rounds():
     """Gets the number of rounds from the user.
@@ -66,22 +74,95 @@ def get_number_of_rounds():
     Returns:
         An integer specifying the number of rounds.
     """
-    return 5
+    print("Select number of rounds (1 3 5 7 9 11 13 15 17)")
 
-def get_courses():
+    while True:
+        try:
+            # Get the number of rounds
+            number = input("> ")
+
+            # Validate
+            number = int(number)
+
+            assert number in {1, 3, 5, 7, 9, 11, 13, 15, 17}
+
+            # All good
+            break
+        except ValueError:
+            print(Fore.RED + "One integers only please!" + Style.RESET_ALL)
+        except AssertionError:
+            print(Fore.RED
+                  + "Yikes! Pick an allowed number of rounds!"
+                  + Style.RESET_ALL)
+
+    # Print a new line for the next section
+    print()
+
+    return number
+
+def get_courses(min_number_of_courses):
     """Gets the courses to select from from the user.
 
+    Arg:
+        min_number_of_courses: An integer specifying the minimum number
+            of courses that must be selected.
     Returns:
         A dictionary (following the schema of COURSE_DICTIONARY from
         constants.py) specifying for each course number, what the name
         of the course is and whether it has already been played. In this
         case, all the courses will be unplayed.
     """
+    # The default set of courses
+    DEFAULT_COURSE_LIST = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15]
+
     print("Select which courses to play")
     print("(defaults to 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15)")
     print("-------------------------------------------------")
-    print_courses()
+    print_courses(show_played=False)
 
     print()
 
-    return {}
+    while True:
+        try:
+            # Get the courses to choose from
+            course_numbers_string = input("> ")
+
+            # Figure out whether to use the default courses
+            if not course_numbers_string.strip():
+                course_numbers = DEFAULT_COURSE_LIST
+                break
+
+            course_numbers = list(set(
+                [int(i) for i in course_numbers_string.split()]))
+
+            # Validate
+            allowed_course_numbers = COURSE_DICTIONARY.keys()
+
+            for course_number in course_numbers:
+                assert course_number in allowed_course_numbers
+
+            if len(course_numbers) < min_number_of_courses:
+                raise TooFewCoursesError
+
+            # We're good
+            break
+
+        except ValueError:
+            print(Fore.RED + "Integers only please!" + Style.RESET_ALL)
+        except AssertionError:
+            print(Fore.RED
+                  + "Yikes! Pick an allowed course number!"
+                  + Style.RESET_ALL)
+        except TooFewCoursesError:
+            print(Fore.RED
+                  + "Hey! Pick at least {number} courses!".format(
+                      number=min_number_of_courses)
+                  + Style.RESET_ALL)
+
+    # Now filter which courses we want to include
+    filtered_courses = {}
+
+    for course_number in course_numbers:
+        filtered_courses[course_number] = COURSE_DICTIONARY[course_number]
+
+    return filtered_courses
