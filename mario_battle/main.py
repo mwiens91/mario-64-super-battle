@@ -3,9 +3,9 @@
 from mario_battle.battle_class import MarioBattle
 from mario_battle.io import (
     display_welcome_message,
+    get_courses,
     get_number_of_rounds,
     get_player_names,
-    print_courses,
 )
 
 
@@ -21,4 +21,4 @@ def main():
     rounds = get_number_of_rounds()
 
     # Select which stages to use
-    print_courses()
+    courses = get_courses()

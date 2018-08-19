@@ -20,3 +20,22 @@ COURSE_DICTIONARY = {
     17: {"name": "Bowser in the Fire Sea", "played": False},
     18: {"name": "Bowser in the Sky", "played": False},
 }
+
+# Thanks to whoever made this!
+MARIO_ASCII_ART = """__▒▒▒▒▒
+—-▒▒▒▒▒▒▒▒▒
+—–▓▓▓░░▓░
+—▓░▓░░░▓░░░
+—▓░▓▓░░░▓░░░
+—▓▓░░░░▓▓▓▓
+——░░░░░░░░
+—-▓▓▒▓▓▓▒▓▓
+–▓▓▓▒▓▓▓▒▓▓▓
+▓▓▓▓▒▒▒▒▒▓▓▓▓
+░░▓▒░▒▒▒░▒▓░░
+░░░▒▒▒▒▒▒▒░░░
+░░▒▒▒▒▒▒▒▒▒░░
+—-▒▒▒ ——▒▒▒
+–▓▓▓———-▓▓▓
+▓▓▓▓———-▓▓▓▓
+"""

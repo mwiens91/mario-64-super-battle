@@ -3,12 +3,32 @@
 All using the command line, at present.
 """
 
-from mario_battle.constants import COURSE_DICTIONARY
+from mario_battle.constants import COURSE_DICTIONARY, MARIO_ASCII_ART
 
+
+def print_courses(course_dict=COURSE_DICTIONARY):
+    """Prints a set of Mario 64 courses.
+
+    By default, this includes all of the courses, all listed as
+    unplayed, if the course_dict argument isn't passed in.
+
+    Arg:
+        course_dict: An optional dictionary (following the schema of
+            COURSE_DICTIONARY from constants.py) specifying for each
+            course number, what the name of the course is and whether it
+            has already been played. Defaults to all courses, with all
+            of them unplayed.
+    """
+    for number, course_info in course_dict.items():
+        print("{number}\t{name}".format(number=number,
+                                        name=course_info['name']))
 
 def display_welcome_message():
     """Displays a welcome message to the user."""
-    print("HEY WELCOME TO MARIO")
+    print("Mario 64 Super-Star Battle")
+    print(MARIO_ASCII_ART)
+    print("visit us at github.com/mwiens91/mario-64-super-star-battle!")
+    print()
 
 def get_player_names():
     """Gets the player names from the user.
@@ -29,17 +49,20 @@ def get_number_of_rounds():
     """
     return 5
 
-def print_courses(course_dict=COURSE_DICTIONARY):
-    """Prints a set of Mario 64 courses.
+def get_courses():
+    """Gets the courses to select from from the user.
 
-    By default, this includes all of the courses, all listed as
-    unplayed, if the course_dict argument isn't passed in.
-
-    Arg:
-        course_dict: An optional dictionary (following the schema of
-            COURSE_DICTIONARY from constants.py) specifying for each
-            course number, what the name of the course is and whether it
-            has already been played. Defaults to all courses, with all
-            of them unplayed.
+    Returns:
+        A dictionary (following the schema of COURSE_DICTIONARY from
+        constants.py) specifying for each course number, what the name
+        of the course is and whether it has already been played. In this
+        case, all the courses will be unplayed.
     """
-    print(course_dict)
+    print("Select which courses to play")
+    print("(defaults to 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15)")
+    print("-------------------------------------------------")
+    print_courses()
+
+    print()
+
+    return {}
