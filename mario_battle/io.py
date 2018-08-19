@@ -3,6 +3,8 @@
 All using the command line, at present.
 """
 
+from collections import OrderedDict
+from colorama import Style
 from mario_battle.constants import COURSE_DICTIONARY, MARIO_ASCII_ART
 
 
@@ -19,9 +21,20 @@ def print_courses(course_dict=COURSE_DICTIONARY):
             has already been played. Defaults to all courses, with all
             of them unplayed.
     """
+    # Make sure the items are in order of course number
+    course_dict = OrderedDict(sorted(course_dict.items()))
+
+    # Print the courses
     for number, course_info in course_dict.items():
-        print("{number}\t{name}".format(number=number,
-                                        name=course_info['name']))
+        # The course string to display
+        course_string = "{number}\t({{played}}) {name}".format(
+            number=number,
+            name=course_info['name'])
+
+        if course_info['played']:
+            print(Style.DIM + course_string.format(played='x') + Style.RESET_ALL)
+        else:
+            print(course_string.format(played=' '))
 
 def display_welcome_message():
     """Displays a welcome message to the user."""
