@@ -8,18 +8,20 @@ from colorama import Style
 from mario_battle.constants import COURSE_DICTIONARY, MARIO_ASCII_ART
 
 
-def print_courses(course_dict=COURSE_DICTIONARY):
+def print_courses(course_dict=COURSE_DICTIONARY, show_played=True):
     """Prints a set of Mario 64 courses.
 
     By default, this includes all of the courses, all listed as
     unplayed, if the course_dict argument isn't passed in.
 
-    Arg:
+    Args:
         course_dict: An optional dictionary (following the schema of
             COURSE_DICTIONARY from constants.py) specifying for each
             course number, what the name of the course is and whether it
             has already been played. Defaults to all courses, with all
             of them unplayed.
+        show_played: An optional boolean specifying whether to show if a course
+            was played or not. Defaults to True.
     """
     # Make sure the items are in order of course number
     course_dict = OrderedDict(sorted(course_dict.items()))
@@ -27,10 +29,14 @@ def print_courses(course_dict=COURSE_DICTIONARY):
     # Print the courses
     for number, course_info in course_dict.items():
         # The course string to display
-        course_string = "{number}\t({{played}}) {name}".format(
-            number=number,
-            name=course_info['name'])
+        course_string = "{number}\t".format(number=number)
 
+        if show_played:
+            course_string += "({played}) "
+
+        course_string += "{name}".format(name=course_info['name'])
+
+        # Dim the text if the course has already been played
         if course_info['played']:
             print(Style.DIM + course_string.format(played='x') + Style.RESET_ALL)
         else:
