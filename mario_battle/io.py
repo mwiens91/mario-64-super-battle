@@ -362,3 +362,32 @@ def time_player(player, course_name):
     print()
 
     return total_time
+
+def round_summary(first_player, second_player, first_player_time, 
+        second_player_time, first_player_total, second_player_total, 
+        first_player_score, second_player_score, round_, course_name):
+    """Print round summary.
+
+    Summary includes current round times, overall player times, and updated score.
+
+    Returns:
+        No return value
+    """
+
+    print("\nRound Summary")
+    print("{} times:".format(course_name))
+    print("\t{}: {}".format(first_player, format_time(first_player_time)))
+    print("\t{}: {}".format(second_player, format_time(second_player_time)))
+    print("Total time:")
+    print("\t{}: {}".format(first_player, format_time(first_player_total)))
+    print("\t{}: {}".format(second_player, format_time(second_player_total)))
+    if (first_player_time < second_player_time):
+        print("{} wins Round {}".format(first_player, round_))
+    elif (second_player_time < first_player_time):
+        print("{} wins Round {}".format(second_player, round_))
+    else:
+        print("Round {} = TIE".format(_round))
+    print("Score:")
+    print("\t{}: {}".format(first_player, first_player_score))
+    print("\t{}: {}".format(second_player, second_player_score))
+    print("\n")

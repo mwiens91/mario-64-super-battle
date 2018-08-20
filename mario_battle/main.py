@@ -10,6 +10,7 @@ from mario_battle.io import (
     get_courses,
     get_number_of_rounds,
     get_player_names,
+    round_summary,
     time_player,
 )
 
@@ -73,6 +74,10 @@ def main():
             player=second_player,
             course_name=course_name)
 
+        #Update player scores
+        battle.update_scores(p1_time=first_player_time, 
+            p2_time=second_player_time)
+
         # Return results
         post_dict = {
             'round': round_,
@@ -84,3 +89,26 @@ def main():
         }
 
         battle.post_results(post_dict)
+
+        if first_player == player1:
+            first_player_total = battle.player1_total_time
+            first_player_score = battle.player1_score
+            second_player_total = battle.player2_total_time
+            second_player_score = battle.player2_score
+        else:
+            first_player_total = battle.player2_total_time
+            first_player_score = battle.player2_score
+            second_player_total = battle.player1_total_time
+            second_player_score = battle.player1_score
+
+        # Summarize round results 
+        round_summary(first_player=first_player,
+            second_player=second_player,
+            first_player_time=first_player_time, 
+            second_player_time=second_player_time, 
+            first_player_total=first_player_total,
+            second_player_total=second_player_total,
+            first_player_score=first_player_score,
+            second_player_score=second_player_score,
+            round_=round_, course_name=course_name)
+

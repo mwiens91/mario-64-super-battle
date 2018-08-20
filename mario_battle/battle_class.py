@@ -54,12 +54,12 @@ class MarioBattle:
         self.results.append(post_dict)
         self.add_times(post_dict["times"])
 
-    def update_scores(p1_time, p2_time):
+    def update_scores(self, p1_time, p2_time):
         if (p1_time < p2_time):
-            player1_score += 1
+            self.player1_score += 1
         elif (p2_time < p1_time):
-            player2_score += 1
-        else
+            self.player2_score += 1
+        else:
             pass
 
     def add_times(self, times):
