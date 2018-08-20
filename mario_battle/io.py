@@ -399,20 +399,45 @@ def round_summary(
         round_: An integer specifying which around it is.
         course_name: A string containing the name of the course.
     """
+    print(Style.BRIGHT + "Round Summary" + Style.RESET_ALL)
+    print(               "-------------")
+    print()
 
-    print("\nRound Summary")
-    print("{} times:".format(course_name))
-    print("\t{}: {}".format(first_player, format_time(first_player_time)))
-    print("\t{}: {}".format(second_player, format_time(second_player_time)))
-    print("Total time:")
-    print("\t{}: {}".format(first_player, format_time(first_player_total)))
-    print("\t{}: {}".format(second_player, format_time(second_player_total)))
+    # Round time
+    print(
+        Style.BRIGHT
+        + course_name
+        + " time"
+        + Style.RESET_ALL)
+    print("{}: {}".format(first_player, format_time(first_player_time)))
+    print("{}: {}".format(second_player, format_time(second_player_time)))
+    print()
+
+    # Total time
+    print(Style.BRIGHT + "Total time" + Style.RESET_ALL)
+    print("{}: {}".format(first_player, format_time(first_player_total)))
+    print("{}: {}".format(second_player, format_time(second_player_total)))
+    print()
+
     if (first_player_time < second_player_time):
-        print("{} wins Round {}".format(first_player, round_))
+        print(
+            Style.BRIGHT
+            + first_player
+            + " won round {}!".format(round_)
+            + Style.RESET_ALL)
     elif (second_player_time < first_player_time):
-        print("{} wins Round {}".format(second_player, round_))
+        print(
+            Style.BRIGHT
+            + second_player
+            + " won round {}!".format(round_)
+            + Style.RESET_ALL)
     else:
-        print("Round {} = TIE".format(_round))
-    print("Score:")
-    print("\t{}: {}".format(first_player, first_player_score))
-    print("\t{}: {}".format(second_player, second_player_score))
+        print(Style.BRIGHT + "Round {}: TIE".format(_round) + Style.RESET_ALL)
+
+    print()
+
+    # Score
+    print(Style.BRIGHT + "Score" + Style.RESET_ALL)
+    print("{}: {}".format(first_player, first_player_score))
+    print("{}: {}".format(second_player, second_player_score))
+    print()
