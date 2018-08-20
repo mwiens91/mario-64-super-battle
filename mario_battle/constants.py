@@ -1,5 +1,7 @@
 """Contains constants for the program."""
 
+# Technically 16-18 aren't courses proper, but to keep things simple
+# we've included them with the other courses
 COURSE_DICTIONARY = {
     1: {"name": "Bob-omb Battlefield", "played": False},
     2: {"name": "Whomp's Fortress", "played": False},
