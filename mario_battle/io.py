@@ -355,23 +355,49 @@ def time_player(player, course_name):
         + Style.BRIGHT
         + course_name
         + Style.RESET_ALL
-        + ": "
-        + Style.BRIGHT
+        + ":")
+    print(
+        Style.BRIGHT
         + format_time(total_time)
         + Style.RESET_ALL)
     print()
 
     return total_time
 
-def round_summary(first_player, second_player, first_player_time, 
-        second_player_time, first_player_total, second_player_total, 
-        first_player_score, second_player_score, round_, course_name):
+def round_summary(
+        first_player,
+        second_player,
+        first_player_time,
+        second_player_time,
+        first_player_total,
+        second_player_total,
+        first_player_score,
+        second_player_score,
+        round_,
+        course_name):
     """Print round summary.
 
-    Summary includes current round times, overall player times, and updated score.
+    Summary includes current round times, overall player times, and
+    updated score.
 
-    Returns:
-        No return value
+    Args:
+        first_player: A string containing the name of the first player.
+        second_player: A string containing the name of the second
+            player.
+        first_player_time A float specifying the round time for the
+            first player.
+        second_player_time A float specifying  the round time for the
+            second player.
+        first_player_total: A float specifying the total time for the
+            first player.
+        second_player_total: A float specifying the total time for the
+            second player.
+        first_player_score: An integer specifying the number of rounds
+            won by the first player.
+        second_player_score: An integer specifying the number of rounds
+            won by the second player.
+        round_: An integer specifying which around it is.
+        course_name: A string containing the name of the course.
     """
 
     print("\nRound Summary")
