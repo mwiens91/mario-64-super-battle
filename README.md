@@ -23,6 +23,22 @@ __▒▒▒▒▒
 The ultimate competition between Mario 64 superstars! Fight in a best
 of "X" over who can six-star complete more levels, faster!
 
+## Rules
+
+This is for two players. One player is randomly selected to be the first
+player. That player selects a course, and, timed, completes all 6 stars
+for that course (not including 100 coins) while the other player
+observes. Then the next player gets timed doing the same thing.
+
+After that round, the player with the quickest time gets a point. The
+player who went second last round now goes first for the next round.
+
+Repeat.
+
+If the players get to the last round, they must collectively decide
+which of the remaining stages to play. The best way to do this is
+probably with a ban system, but that's for you to decide.
+
 ## Installation
 
 Either run this from the source code directly with
