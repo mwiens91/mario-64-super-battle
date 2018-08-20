@@ -57,16 +57,9 @@ class MarioBattle:
         # Update the total time
         self.add_times(post_dict["times"])
 
-<<<<<<< HEAD
         # Mark the course just played as played
         self.courses[post_dict["course"]]["played"] = True
 
-    def update_scores(self, p1_time, p2_time):
-        if (p1_time < p2_time):
-            self.player1_score += 1
-        elif (p2_time < p1_time):
-            self.player2_score += 1
-=======
     def update_scores(self, first_player, second_player, 
             first_player_time, second_player_time):
         if (first_player_time < second_player_time):
@@ -79,7 +72,6 @@ class MarioBattle:
                 self.player2_score += 1
             else:
                 self.player1_score += 1
->>>>>>> Add final summary function, and couple other things
         else:
             pass
 
