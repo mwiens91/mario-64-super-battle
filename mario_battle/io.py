@@ -74,7 +74,7 @@ def get_number_of_rounds():
     Returns:
         An integer specifying the number of rounds.
     """
-    print("Select number of rounds (1 3 5 7 9 11 13 15 17)")
+    print("Select number of rounds (1 3 5 7 9 11 13 15)")
 
     while True:
         try:
@@ -84,7 +84,7 @@ def get_number_of_rounds():
             # Validate
             number = int(number)
 
-            assert number in {1, 3, 5, 7, 9, 11, 13, 15, 17}
+            assert number in {1, 3, 5, 7, 9, 11, 13, 15}
 
             # All good
             break
