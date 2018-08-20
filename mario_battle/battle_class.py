@@ -25,14 +25,14 @@ class MarioBattle:
     def get_players(self, _round):
         """returns players in order of whose turn it is"""
         if _round%2 == 1:
-            return player1, player2
+            return self.player1, self.player2
         else:
-            return player2, player1
+            return self.player2, self.player1
 
     def post_results(self, post_dict):
         """stores <round, course, times> dict into results list"""
-        results.append(post_dict)
-        self.add_times(post_dict["times"], post_dict["times"])
+        self.results.append(post_dict)
+        self.add_times(post_dict["times"])
     
     def add_times(self, times):
         """p1_time and p2_time are floats representing seconds"""
