@@ -316,15 +316,17 @@ def time_player(player, course_name):
         Style.BRIGHT
         + player
         + Style.RESET_ALL
-        + ", press enter to begin your run\n> ")
-    print()
+        + ", press enter to begin your run. > ")
 
     start_time = time()
 
     while True:
         # End timer
-        input("Press enter again to stop your run\n> ")
-        print()
+        input(
+            Style.BRIGHT
+            + player
+            + Style.RESET_ALL
+            + ", press enter to stop your run. > ")
         stop_time = time()
 
         # Validate
