@@ -4,9 +4,9 @@ All using the command line, at present.
 """
 
 from collections import OrderedDict
+from time import time
 from colorama import Fore, Style
 from mario_battle.constants import COURSE_DICTIONARY, MARIO_ASCII_ART
-from time import time
 
 
 class NameEmptyError(Exception):
@@ -426,20 +426,20 @@ def round_summary(
     print("{}:\t{}".format(second_player, format_time(second_player_total)))
     print()
 
-    if (first_player_time < second_player_time):
+    if first_player_time < second_player_time:
         print(
             Style.BRIGHT
             + first_player
             + " won round {}!".format(round_)
             + Style.RESET_ALL)
-    elif (second_player_time < first_player_time):
+    elif second_player_time < first_player_time:
         print(
             Style.BRIGHT
             + second_player
             + " won round {}!".format(round_)
             + Style.RESET_ALL)
     else:
-        print(Style.BRIGHT + "Round {}: TIE".format(_round) + Style.RESET_ALL)
+        print(Style.BRIGHT + "Round {}: TIE".format(round_) + Style.RESET_ALL)
 
     print()
 
@@ -449,16 +449,25 @@ def round_summary(
     print("{}:\t{}".format(second_player, second_player_score))
     print()
 
-def final_summary(first_player, second_player, first_player_time, 
-        second_player_time, first_player_total, second_player_total, 
-        first_player_score, second_player_score, round_, course_name):
+def final_summary(
+        first_player,
+        second_player,
+        first_player_time,
+        second_player_time,
+        first_player_total,
+        second_player_total,
+        first_player_score,
+        second_player_score,
+        round_,
+        course_name):
     print("\nFinal Summary")
-    if (first_player_score > second_player_score):
+
+    if first_player_score > second_player_score:
         print("{} WON MARIO-64 SUPER STAR BATTLE!".format(first_player))
-    elif (second_player_score > first_player_score):
+    elif second_player_score > first_player_score:
         print("{} WON MARIO-64 SUPER STAR BATTLE!".format(second_player))
     else:
-        print("FINAL RESULT = TIE".format(_round))
+        print("FINAL RESULT = TIE".format(round_))
 
     print("Final Score:")
     print("\t{}: {}".format(first_player, first_player_score))

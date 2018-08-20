@@ -76,10 +76,11 @@ def main():
             course_name=course_name)
 
         #Update player scores
-        battle.update_scores(first_player=first_player,
-                second_player=second_player,
-                first_player_time=first_player_time,
-                second_player_time=second_player_time)
+        battle.update_scores(
+            first_player=first_player,
+            second_player=second_player,
+            first_player_time=first_player_time,
+            second_player_time=second_player_time)
 
         # Return results and update total times
         post_dict = {
@@ -118,16 +119,18 @@ def main():
             round_=round_,
             course_name=course_name)
 
-        if (round_ == battle.num_rounds or 
-            battle.player1_score * 2 > battle.num_rounds or 
-            battle.player2_score * 2 > battle.num_rounds):
-            final_summary(first_player=first_player,
+        if (round_ == battle.num_rounds
+                or battle.player1_score * 2 > battle.num_rounds
+                or battle.player2_score * 2 > battle.num_rounds):
+            final_summary(
+                first_player=first_player,
                 second_player=second_player,
-                first_player_time=first_player_time, 
-                second_player_time=second_player_time, 
+                first_player_time=first_player_time,
+                second_player_time=second_player_time,
                 first_player_total=first_player_total,
                 second_player_total=second_player_total,
                 first_player_score=first_player_score,
                 second_player_score=second_player_score,
-                round_=round_, course_name=course_name)
-            break;
+                round_=round_,
+                course_name=course_name)
+            break

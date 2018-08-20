@@ -60,15 +60,19 @@ class MarioBattle:
         # Mark the course just played as played
         self.courses[post_dict["course"]]["played"] = True
 
-    def update_scores(self, first_player, second_player, 
-            first_player_time, second_player_time):
-        if (first_player_time < second_player_time):
-            if (self.player1 == first_player):
+    def update_scores(
+            self,
+            first_player,
+            second_player,
+            first_player_time,
+            second_player_time):
+        if first_player_time < second_player_time:
+            if self.player1 == first_player:
                 self.player1_score += 1
             else:
                 self.player2_score += 1
-        elif (second_player_time < first_player_time):
-            if (self.player1 == first_player):
+        elif second_player_time < first_player_time:
+            if self.player1 == first_player:
                 self.player2_score += 1
             else:
                 self.player1_score += 1
