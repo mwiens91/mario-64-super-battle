@@ -1,5 +1,7 @@
 """Contains the main function for battling."""
 
+import signal
+import sys
 from mario_battle.battle_class import MarioBattle
 from mario_battle.io import (
     display_welcome_message,
@@ -11,8 +13,16 @@ from mario_battle.io import (
 )
 
 
+def exit_program(*_, **__):
+    """Exits the program."""
+    print("\n\nSee ya!")
+    sys.exit(0)
+
 def main():
     """The main function."""
+    # Register the ending message for a keyboard interrupt
+    signal.signal(signal.SIGINT, exit_program)
+
     # Display a welcome message
     display_welcome_message()
 
