@@ -70,7 +70,10 @@ def format_time(seconds):
 
 def display_welcome_message():
     """Displays a welcome message to the user."""
-    print(Style.BRIGHT + "Mario 64 Super-Star Battle" + Style.RESET_ALL)
+    title = "Mario 64 Super-Star Battle"
+    print('-' * len(title))
+    print(Style.BRIGHT + title + Style.RESET_ALL)
+    print('-' * len(title))
     print()
     print(MARIO_ASCII_ART)
     print("visit us at github.com/mwiens91/mario-64-super-star-battle!")
