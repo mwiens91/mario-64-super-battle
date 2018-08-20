@@ -47,12 +47,12 @@ def main():
                 player=first_player,
                 last_stage=False)
 
-        # Player 1's turn!
+        # First player's turn!
         first_player_time = time_player(
             player=first_player,
             course=course)
 
-        # Player 2's turn!
+        # Second player's turn!
         second_player_time = time_player(
             player=second_player,
             course=course)
