@@ -205,7 +205,41 @@ def get_course(course_selection, player, last_stage=False):
         A two-tuple containing an integer and a string. The integer
         specifies the course number and the string is the course name.
     """
-    return (1, COURSE_DICTIONARY[1]['name'])
+    # Prompt the player to select a course
+    if last_stage:
+        prompt_msg = (
+            "Sudden death! Collectively choose an available course!")
+    else:
+        prompt_msg = "{name}! Select an available course".format(name=player)
+    print(prompt_msg)
+    print('-' * len(prompt_msg))
+    print_courses(course_selection)
+    print()
+
+    # Get the input and validate
+    while True:
+        try:
+            # Get the courses to choose from
+            course_number_string = input("(choose a course number)\n> ")
+            course_number = int(course_number_string)
+
+            # Validate
+            allowed_course_numbers = course_selection.keys()
+            assert course_number in allowed_course_numbers
+
+            # We're good
+            break
+        except ValueError:
+            print(Fore.RED + "Integers only please!" + Style.RESET_ALL)
+        except AssertionError:
+            print(Fore.RED
+                  + "Yikes! Pick an allowed course number!"
+                  + Style.RESET_ALL)
+
+    # End section with an empty line
+    print()
+
+    return (course_number, COURSE_DICTIONARY[course_number]['name'])
 
 def time_player(player, course_name):
     return 1
