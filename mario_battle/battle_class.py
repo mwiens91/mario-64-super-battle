@@ -20,9 +20,8 @@ class MarioBattle:
                 and whether it has already been played.
         """
         self.courses = courses
-        self.player1 = player1
-        self.player2 = player2
-        self.first_player = random.randint(1, 2)
+        self.player1 = random.choice([player1, player2])
+        self.player2 = player2 if self.player1 == player1 else player1
         self.num_rounds = num_rounds
         self.player1_total_time = 0
         self.player2_total_time = 0
@@ -36,10 +35,7 @@ class MarioBattle:
         Arg:
             round_: An integer specifying which round it is.
         """
-        if round_ % 2 == 1:
-            return self.player1, self.player2
-
-        return self.player2, self.player1
+        return (self.player1 if round_ % 2 == 1 else self.player2)
 
     def post_results(self, post_dict):
         """Stores round results into results list.
@@ -50,8 +46,8 @@ class MarioBattle:
 
                 {'round': 1,
                  'course': 5,
-                 'times': {'Matt': 69.420,
-                           'Branko': 420.69}}
+                 'times': {'Matt': 420.69,
+                           'Branko': 69.420}}
         """
         self.results.append(post_dict)
         self.add_times(post_dict["times"])

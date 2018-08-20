@@ -301,7 +301,7 @@ def time_player(player, course_name):
         stop_time = time()
 
         # Validate
-        answer = input("Did you mean to stop the time there? (y/n, default yes)")
+        answer = input("Did you mean to stop the time there? (y/n, default yes) ")
         if (answer == 'n' or answer == 'N'):
             continue
         else:
