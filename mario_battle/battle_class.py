@@ -35,7 +35,7 @@ class MarioBattle:
         Arg:
             round_: An integer specifying which round it is.
         """
-        return (self.player1 if round_ % 2 == 1 else self.player2)
+        return (self.player1, self.player2) if round_ % 2 == 1 else (self.player2, self.player1)
 
     def post_results(self, post_dict):
         """Stores round results into results list.
