@@ -45,7 +45,7 @@ def main():
             course = get_course(
                 courses=battle.courses,
                 player=first_player,
-                last_stage=True)
+                last_stage=False)
 
         # Player 1's turn!
         first_player_time = time_player(
