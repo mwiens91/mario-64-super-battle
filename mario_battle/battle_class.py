@@ -2,14 +2,6 @@
 import time
 import random
 
-def show_times(seconds):
-    """returns time elapsed in "hours:minutes:seconds.millisecond" string"""
-    hours = seconds // 3600
-    minutes = (seconds - (hours*3600)) // 60
-    seconds = seconds - (hours*3600) - (minutes*60)
-    time_elapsed = "{:02.0f}:{:02.0f}:{:06.3f}".format(hours,minutes,seconds)
-    return time_elapsed
-
 class MarioBattle:
     def __init__(self, player1, player2, num_rounds, courses):
         """initialize player names, number of rounds, and the courses chosen to play"""
