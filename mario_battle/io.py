@@ -115,7 +115,7 @@ def get_courses(min_number_of_courses):
     # The default set of courses
     DEFAULT_COURSE_LIST = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15]
 
-    print("Select which courses to play")
+    print("Select which courses are eligible to be played")
     print("(defaults to 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15)")
     print("-------------------------------------------------")
     print_courses(show_played=False)
