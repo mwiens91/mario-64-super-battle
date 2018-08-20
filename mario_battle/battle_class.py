@@ -40,7 +40,7 @@ class MarioBattle:
         return (self.player1, self.player2) if round_ % 2 == 1 else (self.player2, self.player1)
 
     def post_results(self, post_dict):
-        """Stores round results.
+        """Stores round results into results list and updates total times.
 
         Arg:
             post_dict: A dictionary specifying the results of the round.
@@ -57,6 +57,7 @@ class MarioBattle:
         # Update the total time
         self.add_times(post_dict["times"])
 
+<<<<<<< HEAD
         # Mark the course just played as played
         self.courses[post_dict["course"]]["played"] = True
 
@@ -65,6 +66,20 @@ class MarioBattle:
             self.player1_score += 1
         elif (p2_time < p1_time):
             self.player2_score += 1
+=======
+    def update_scores(self, first_player, second_player, 
+            first_player_time, second_player_time):
+        if (first_player_time < second_player_time):
+            if (self.player1 == first_player):
+                self.player1_score += 1
+            else:
+                self.player2_score += 1
+        elif (second_player_time < first_player_time):
+            if (self.player1 == first_player):
+                self.player2_score += 1
+            else:
+                self.player1_score += 1
+>>>>>>> Add final summary function, and couple other things
         else:
             pass
 

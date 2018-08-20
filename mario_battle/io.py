@@ -445,3 +445,22 @@ def round_summary(
     print("{}:\t{}".format(first_player, first_player_score))
     print("{}:\t{}".format(second_player, second_player_score))
     print()
+
+def final_summary(first_player, second_player, first_player_time, 
+        second_player_time, first_player_total, second_player_total, 
+        first_player_score, second_player_score, round_, course_name):
+    print("\nFinal Summary")
+    if (first_player_score > second_player_score):
+        print("{} WON MARIO-64 SUPER STAR BATTLE!".format(first_player))
+    elif (second_player_score > first_player_score):
+        print("{} WON MARIO-64 SUPER STAR BATTLE!".format(second_player))
+    else:
+        print("FINAL RESULT = TIE".format(_round))
+
+    print("Final Score:")
+    print("\t{}: {}".format(first_player, first_player_score))
+    print("\t{}: {}".format(second_player, second_player_score))
+
+    print("Total time:")
+    print("\t{}: {}".format(first_player, format_time(first_player_total)))
+    print("\t{}: {}".format(second_player, format_time(second_player_total)))
