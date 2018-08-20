@@ -70,7 +70,8 @@ def format_time(seconds):
 
 def display_welcome_message():
     """Displays a welcome message to the user."""
-    print("Mario 64 Super-Star Battle")
+    print(Style.BRIGHT + "Mario 64 Super-Star Battle" + Style.RESET_ALL)
+    print()
     print(MARIO_ASCII_ART)
     print("visit us at github.com/mwiens91/mario-64-super-star-battle!")
     print()
@@ -135,7 +136,7 @@ def get_number_of_rounds():
     Returns:
         An integer specifying the number of rounds.
     """
-    print("Select number of rounds (1 3 5 7 9 11 13 15)")
+    print("Select number of rounds (1 3 5 7 9 11 13 15):")
 
     while True:
         try:
@@ -177,8 +178,8 @@ def get_courses(min_number_of_courses):
     DEFAULT_COURSE_LIST = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15]
 
     print("Select which courses are eligible to be played")
-    print("(defaults to 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15)")
-    print("-------------------------------------------------")
+    print("(defaults to 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15):")
+    print("--------------------------------------------------")
     print_courses(show_played=False)
 
     print()
@@ -238,7 +239,8 @@ def display_round_welcome_message(round_):
     """
     message = "ROUND {round_}".format(round_=round_)
     print()
-    print(message)
+    print('-' * len(message))
+    print(Style.BRIGHT + message + Style.RESET_ALL)
     print('-' * len(message))
     print()
 
@@ -263,7 +265,10 @@ def get_course(course_selection, player, last_stage=False):
     # Prompt the player to select a course
     if last_stage:
         prompt_msg = (
-            "Sudden death! Collectively choose an available course!")
+            Style.BRIGHT
+            + "Sudden death!"
+            + Style.RESET_ALL
+            + " Collectively choose an available course!")
     else:
         prompt_msg = "{name}! Select an available course".format(name=player)
     print(prompt_msg)
@@ -304,30 +309,51 @@ def time_player(player, course_name):
     Returns:
         A float specifying the player's course time in seconds.
     """
-    input("{}, Press enter to begin your run > ".format(player))
+    input(
+        Style.BRIGHT
+        + player
+        + Style.RESET_ALL
+        + ", press enter to begin your run\n> ")
+    print()
+
     start_time = time()
 
     while True:
         # End timer
-        input("Press enter again to stop your run > ")
+        input("Press enter again to stop your run\n> ")
+        print()
         stop_time = time()
 
         # Validate
-        answer = input("Did you mean to stop the time there? (y/n, default yes) ")
-        if (answer == 'n' or answer == 'N'):
+        print("Time recorded. "
+              + Style.BRIGHT
+              + "If this was a mistake enter \"c\" "
+              + Style.RESET_ALL
+              + "(for continue) to keep timing. "
+              + "Otherwise hit enter.")
+
+        answer = input("> ")
+
+        if answer.strip() in ['c', 'C']:
             continue
         else:
             break
 
     total_time = stop_time - start_time
 
-    print("\n{}'s time for {}: {}\n".format(player, course_name, format_time(total_time)))
-
-    return total_time
-
-
-    # Print a new line for the next section
+    print()
+    print(
+        Style.BRIGHT
+        + player
+        + Style.RESET_ALL
+        + "'s time for "
+        + Style.BRIGHT
+        + course_name
+        + Style.RESET_ALL
+        + ": "
+        + Style.BRIGHT
+        + format_time(total_time)
+        + Style.RESET_ALL)
     print()
 
-    return number
-
+    return total_time
