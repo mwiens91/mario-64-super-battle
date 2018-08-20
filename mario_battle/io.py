@@ -6,6 +6,7 @@ All using the command line, at present.
 from collections import OrderedDict
 from colorama import Fore, Style
 from mario_battle.constants import COURSE_DICTIONARY, MARIO_ASCII_ART
+from time import time
 
 
 class TooFewCoursesError(Exception):
@@ -241,4 +242,37 @@ def get_course(course_selection, player, last_stage=False):
     return (course_number, COURSE_DICTIONARY[course_number]['name'])
 
 def time_player(player, course_name):
-    return 1
+    """Times the user during their course run.
+
+    Confirms with the user that the time stoppage was intentional
+
+    Returns:
+        A float specifying the player's course time in seconds.
+    """
+    input("{}, Press enter to begin your run > ".format(player))
+    start_time = time()
+
+    while True:
+        # End timer
+        input("Press enter again to stop your run > ")
+        stop_time = time()
+
+        # Validate
+        answer = input("Did you mean to stop the time there? (y/n, default yes)")
+        if (answer == 'n' or answer == 'N'):
+            continue
+        else:
+            break
+
+    total_time = stop_time - start_time
+
+    print("\n{}'s time for {}: {}\n".format(player, course_name, format_time(total_time)))
+
+    return total_time
+
+
+    # Print a new line for the next section
+    print()
+
+    return number
+
