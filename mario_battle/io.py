@@ -1,6 +1,6 @@
 """Contains functions for displaying and retreiving info.
 
-All using the command line, at present.
+Does some processing, too. All using the command line, at present.
 """
 
 from collections import OrderedDict
@@ -287,7 +287,9 @@ def get_course(course_selection, player, last_stage=False):
             course_number = int(course_number_string)
 
             # Validate
-            allowed_course_numbers = course_selection.keys()
+            allowed_course_numbers = (
+                [number for number, info in course_selection.items()
+                 if not info['played']])
             assert course_number in allowed_course_numbers
 
             # We're good
