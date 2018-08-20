@@ -163,7 +163,6 @@ def get_courses(min_number_of_courses):
 
             # We're good
             break
-
         except ValueError:
             print(Fore.RED + "Integers only please!" + Style.RESET_ALL)
         except AssertionError:
@@ -175,6 +174,9 @@ def get_courses(min_number_of_courses):
                   + "Hey! Pick at least {number} courses!".format(
                       number=min_number_of_courses)
                   + Style.RESET_ALL)
+
+    # Print an empty line to end this section
+    print()
 
     # Now filter which courses we want to include
     filtered_courses = {}
