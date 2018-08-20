@@ -399,8 +399,12 @@ def round_summary(
         round_: An integer specifying which around it is.
         course_name: A string containing the name of the course.
     """
-    print(Style.BRIGHT + "Round Summary" + Style.RESET_ALL)
-    print(               "-------------")
+    # Title
+    title = "ROUND {} SUMMARY".format(round_)
+
+    print('-' * len(title))
+    print(Style.BRIGHT + title + Style.RESET_ALL)
+    print('-' * len(title))
     print()
 
     # Round time
@@ -409,14 +413,14 @@ def round_summary(
         + course_name
         + " time"
         + Style.RESET_ALL)
-    print("{}: {}".format(first_player, format_time(first_player_time)))
-    print("{}: {}".format(second_player, format_time(second_player_time)))
+    print("{}:\t{}".format(first_player, format_time(first_player_time)))
+    print("{}:\t{}".format(second_player, format_time(second_player_time)))
     print()
 
     # Total time
     print(Style.BRIGHT + "Total time" + Style.RESET_ALL)
-    print("{}: {}".format(first_player, format_time(first_player_total)))
-    print("{}: {}".format(second_player, format_time(second_player_total)))
+    print("{}:\t{}".format(first_player, format_time(first_player_total)))
+    print("{}:\t{}".format(second_player, format_time(second_player_total)))
     print()
 
     if (first_player_time < second_player_time):
@@ -438,6 +442,6 @@ def round_summary(
 
     # Score
     print(Style.BRIGHT + "Score" + Style.RESET_ALL)
-    print("{}: {}".format(first_player, first_player_score))
-    print("{}: {}".format(second_player, second_player_score))
+    print("{}:\t{}".format(first_player, first_player_score))
+    print("{}:\t{}".format(second_player, second_player_score))
     print()
