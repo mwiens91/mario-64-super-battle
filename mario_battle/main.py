@@ -4,6 +4,7 @@ import signal
 import sys
 from mario_battle.battle_class import MarioBattle
 from mario_battle.io import (
+    display_round_welcome_message,
     display_welcome_message,
     get_course,
     get_courses,
@@ -44,6 +45,9 @@ def main():
 
     # Battle!
     for round_ in range(1, rounds + 1):
+        # Welcome them to the round
+        display_round_welcome_message(round_)
+
         # Determine starting player
         first_player, second_player = battle.get_players(round_)
 

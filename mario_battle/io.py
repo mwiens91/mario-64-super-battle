@@ -230,6 +230,18 @@ def get_courses(min_number_of_courses):
 
     return filtered_courses
 
+def display_round_welcome_message(round_):
+    """Displays a welcome message for the round.
+
+    Arg:
+        round_: An integer specifying the round number.
+    """
+    message = "ROUND {round_}".format(round_=round_)
+    print()
+    print(message)
+    print('-' * len(message))
+    print()
+
 def get_course(course_selection, player, last_stage=False):
     """Asks player which course they want to choose.
 
