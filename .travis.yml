@@ -9,6 +9,13 @@ script:
   # Do stuff
   - touch a
 
+install:
+  # Install Codecov
+  - pip install codecov
+
+  # Install requirements
+  - pip install -r requirements.txt
+
 after_success:
   # Upload code coverage to Codecov
   - codecov
