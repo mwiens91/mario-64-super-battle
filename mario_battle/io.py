@@ -272,10 +272,21 @@ def get_course(course_selection, player, last_stage=False):
             + "Sudden death!"
             + Style.RESET_ALL
             + " Collectively choose an available course!")
+
+        # Using len on prompt_msg gives incorrect results
+        prompt_msg_length = len("Sudden death! "
+                                "Collectively choose an available course!")
     else:
-        prompt_msg = "{name}! Select an available course".format(name=player)
+        prompt_msg = (Style.BRIGHT
+                      + player
+                      + Style.RESET_ALL
+                      + "! Select an available course!")
+
+        # Using len on prompt_msg gives incorrect results
+        prompt_msg_length = len(player + "! Select an available course!")
+
     print(prompt_msg)
-    print('-' * len(prompt_msg))
+    print('-' * prompt_msg_length)
     print_courses(course_selection)
     print()
 
