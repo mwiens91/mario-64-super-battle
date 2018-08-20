@@ -1,5 +1,6 @@
 """Contains an object to keep track of battle results."""
-import datetime
+import time
+import random
 
 def show_times(seconds):
     """returns time elapsed in "hours:minutes:seconds.millisecond" string"""
@@ -15,15 +16,22 @@ class MarioBattle:
         self.courses = courses
         self.player1 = player1
         self.player2 = player2
+        self.first_player = random.randint(1,2)
         self.num_rounds = num_rounds
         self.p1_total_time = 0
         self.p2_total_time = 0
-        self.p1_times = [] #list of course times
-        self.p2_times = [] #list of course times
+        self.results = [] #list of <round_num, course, times> dict
+
+    def get_players(self, _round):
+        """returns players in order of whose turn it is"""
+        return player1, player2 if _round%2 == 1 else return player2, player1
+
+    def post_results(self, post_dict):
+        """stores <round, course, times> dict into results list"""
+        results.append(post_dict)
+        self.add_times(post_dict["times"], post_dict["times"])
     
-    def add_times(self, p1_time, p2_time):
-        """p1_time and p2_time are ints representing total seconds"""
-        self.p1_total_time += p1_time
-        self.p2_total_time += p2_time
-        self.p1_times.append(p1_time)
-        self.p2_times.append(p2_time)
+    def add_times(self, times):
+        """p1_time and p2_time are floats representing seconds"""
+        self.p1_total_time += times[self.player1]
+        self.p2_total_time += times[self.player2]
