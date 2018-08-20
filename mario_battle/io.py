@@ -46,8 +46,17 @@ def print_courses(course_dict=COURSE_DICTIONARY, show_played=True):
         else:
             print(course_string.format(played=' '))
 
-def show_times(seconds):
-    """returns time elapsed in "hours:minutes:seconds.millisecond" string"""
+def format_time(seconds):
+    """Returns seconds as a formatted string.
+
+    The format is "hours:minutes:seconds.millisecond".
+
+    Arg:
+        A float containing a number of seconds.
+    Returns:
+        A formatted string containing the time represented by the number
+        of seconds passed in.
+    """
     hours = seconds // 3600
     minutes = (seconds - (hours*3600)) // 60
     seconds = seconds - (hours*3600) - (minutes*60)
