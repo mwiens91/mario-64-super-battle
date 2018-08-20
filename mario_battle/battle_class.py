@@ -24,7 +24,10 @@ class MarioBattle:
 
     def get_players(self, _round):
         """returns players in order of whose turn it is"""
-        return player1, player2 if _round%2 == 1 else return player2, player1
+        if _round%2 == 1:
+            return player1, player2
+        else:
+            return player2, player1
 
     def post_results(self, post_dict):
         """stores <round, course, times> dict into results list"""
