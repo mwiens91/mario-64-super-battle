@@ -9,6 +9,10 @@ from mario_battle.constants import COURSE_DICTIONARY, MARIO_ASCII_ART
 from time import time
 
 
+class NameEmptyError(Exception):
+    """An exception for when the user leaves their name blank."""
+    pass
+
 class TooFewCoursesError(Exception):
     """An exception for when too few courses are selected."""
     pass
@@ -77,11 +81,50 @@ def get_player_names():
     Returns:
         A tuple of two strings, containing the player names.
     """
-    player1 = input("player 1: ")
-    player2 = input("player 2: ")
+    while True:
+        try:
+            # Get the name
+            player1 = input("Player 1: ")
+            player1 = player1.strip()
+
+            # Validate
+            if not player1:
+                raise NameEmptyError
+
+            # Good
+            break
+        except NameEmptyError:
+            print(Fore.RED
+                  + "Hey you! Enter a non-blank name!"
+                  + Style.RESET_ALL)
+
+    while True:
+        try:
+            # Get the name
+            player2 = input("Player 2: ")
+            player2 = player2.strip()
+
+            # Validate
+            if not player2:
+                raise NameEmptyError
+
+            assert player2 != player1
+
+            # Good
+            break
+        except NameEmptyError:
+            print(Fore.RED
+                  + "Hey you! Enter a non-blank name!"
+                  + Style.RESET_ALL)
+        except AssertionError:
+            print(Fore.RED
+                  + "Yeesh! There can't be two {name}s!".format(name=player1)
+                  + Style.RESET_ALL)
+
+    # End the section with a new line
     print()
 
-    return (player1.strip(), player2.strip())
+    return (player1, player2)
 
 def get_number_of_rounds():
     """Gets the number of rounds from the user.
