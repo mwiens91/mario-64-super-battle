@@ -3,9 +3,11 @@
 from mario_battle.battle_class import MarioBattle
 from mario_battle.io import (
     display_welcome_message,
+    get_course,
     get_courses,
     get_number_of_rounds,
     get_player_names,
+    time_player,
 )
 
 
@@ -37,30 +39,30 @@ def main():
 
         # Determine stage
         if round_ == rounds:
-            course = get_course(
-                courses=battle.courses,
+            course_number, course_name = get_course(
+                course_selection=battle.courses,
                 player=first_player,
                 last_stage=True)
         else:
-            course = get_course(
-                courses=battle.courses,
+            course_number, course_name = get_course(
+                course_selection=battle.courses,
                 player=first_player,
                 last_stage=False)
 
         # First player's turn!
         first_player_time = time_player(
             player=first_player,
-            course=course)
+            course_name=course_name)
 
         # Second player's turn!
         second_player_time = time_player(
             player=second_player,
-            course=course)
+            course_name=course_name)
 
         # Return results
         post_dict = {
             'round': round_,
-            'course': course,
+            'course': course_number,
             'times': {
                 first_player: first_player_time,
                 second_player: second_player_time

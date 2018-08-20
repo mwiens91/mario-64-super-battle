@@ -166,3 +166,27 @@ def get_courses(min_number_of_courses):
         filtered_courses[course_number] = COURSE_DICTIONARY[course_number]
 
     return filtered_courses
+
+def get_course(course_selection, player, last_stage=False):
+    """Asks player which course they want to choose.
+
+    If it's the last stage, the players pick or ban collectively.
+
+    Args:
+        course_selection: A dictionary (following the schema of
+            COURSE_DICTIONARY from constants.py) specifying for each
+            course number, what the name of the course is and whether it
+            has already been played. Defaults to all courses, with all
+            of them unplayed.
+        player: A string containing the name of the player who is
+            selecting the course.
+        last_stage: An optional boolean specifying if it's the last
+            stage.
+    Returns:
+        A two-tuple containing an integer and a string. The integer
+        specifies the course number and the string is the course name.
+    """
+    return (1, COURSE_DICTIONARY[1]['name'])
+
+def time_player(player, course_name):
+    return 1
