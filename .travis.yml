@@ -8,3 +8,7 @@ python:
 script:
   # Do stuff
   - touch a
+
+after_success:
+  # Upload code coverage to Codecov
+  - codecov

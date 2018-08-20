@@ -1,4 +1,5 @@
 [![Build Status](https://travis-ci.com/mwiens91/mario-64-super-star-battle.svg?branch=master)](https://travis-ci.com/mwiens91/mario-64-super-star-battle)
+[![codecov](https://codecov.io/gh/mwiens91/mario-64-super-star-battle/branch/master/graph/badge.svg)](https://codecov.io/gh/mwiens91/mario-64-super-star-battle)
 [![PyPI](https://img.shields.io/pypi/v/mario-64-super-star-battle.svg)](https://pypi.org/project/mario-64-super-star-battle/)
 ![Python version](https://img.shields.io/badge/python-3-blue.svg)
 
