@@ -306,6 +306,9 @@ def time_player(player, course_name):
 
     Confirms with the user that the time stoppage was intentional
 
+    Args:
+        player: A string containing the player name.
+        course_name: A string containing the course name.
     Returns:
         A float specifying the player's course time in seconds.
     """
