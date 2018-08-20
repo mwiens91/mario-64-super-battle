@@ -194,9 +194,8 @@ def get_course(course_selection, player, last_stage=False):
     Args:
         course_selection: A dictionary (following the schema of
             COURSE_DICTIONARY from constants.py) specifying for each
-            course number, what the name of the course is and whether it
-            has already been played. Defaults to all courses, with all
-            of them unplayed.
+            selected course number, what the name of the course is and
+            whether it has already been played.
         player: A string containing the name of the player who is
             selecting the course.
         last_stage: An optional boolean specifying if it's the last
