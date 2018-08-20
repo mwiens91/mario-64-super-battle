@@ -23,6 +23,8 @@ class MarioBattle:
         self.player1 = random.choice([player1, player2])
         self.player2 = player2 if self.player1 == player1 else player1
         self.num_rounds = num_rounds
+        self.player1_score = 0
+        self.player2_score = 0
         self.player1_total_time = 0
         self.player2_total_time = 0
         self.results = [] #list of <round_num, course, times> dict
@@ -51,6 +53,14 @@ class MarioBattle:
         """
         self.results.append(post_dict)
         self.add_times(post_dict["times"])
+
+    def update_scores(p1_time, p2_time):
+        if (p1_time < p2_time):
+            player1_score += 1
+        elif (p2_time < p1_time):
+            player2_score += 1
+        else
+            pass
 
     def add_times(self, times):
         """Add round times to the total times.
