@@ -390,4 +390,3 @@ def round_summary(first_player, second_player, first_player_time,
     print("Score:")
     print("\t{}: {}".format(first_player, first_player_score))
     print("\t{}: {}".format(second_player, second_player_score))
-    print("\n")
