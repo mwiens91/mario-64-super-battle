@@ -25,6 +25,9 @@ setup(
         'Programming Language :: Python :: 3 :: Only',
     ],
     packages=['mario_battle'],
+    entry_points={
+        'console_scripts': ['m64ssb = mario_battle.main:main'],
+    },
     python_requires='>=3',
     install_requires=[
         'colorama',
