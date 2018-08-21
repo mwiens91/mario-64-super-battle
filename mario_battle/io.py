@@ -458,14 +458,12 @@ def round_summary(
     if first_player_time < second_player_time:
         print(
             Style.BRIGHT
-            + first_player
-            + " won round {}!".format(round_)
+            + "{} won round {}!".format(first_player, round_)
             + Style.RESET_ALL)
     elif second_player_time < first_player_time:
         print(
             Style.BRIGHT
-            + second_player
-            + " won round {}!".format(round_)
+            + "{} won round {}!".format(second_player, round_)
             + Style.RESET_ALL)
     else:
         print(Style.BRIGHT + "Round {}: TIE".format(round_) + Style.RESET_ALL)
@@ -478,7 +476,6 @@ def round_summary(
     print("{}:\t{}".format(second_player, second_player_score))
     print()
 
-
 def final_summary(
         first_player,
         second_player,
@@ -490,19 +487,39 @@ def final_summary(
         second_player_score,
         round_,
         course_name):
-    print("\nFinal Summary")
+    # Title
+    title = "FINAL SUMMARY"
 
-    if first_player_score > second_player_score:
-        print("{} WON MARIO-64 SUPER STAR BATTLE!".format(first_player))
-    elif second_player_score > first_player_score:
-        print("{} WON MARIO-64 SUPER STAR BATTLE!".format(second_player))
+    print('-' * len(title))
+    print(Style.BRIGHT + title + Style.RESET_ALL)
+    print('-' * len(title))
+    print()
+    if (first_player_score > second_player_score):
+        print(
+            Style.BRIGHT
+            + "{} WON MARIO-64 SUPER STAR BATTLE!".format(first_player)
+            + Style.RESET_ALL)
+    elif (second_player_score > first_player_score):
+        print(
+            Style.BRIGHT
+            + "{} WON MARIO-64 SUPER STAR BATTLE!!!".format(second_player)
+            + Style.RESET_ALL)
     else:
-        print("FINAL RESULT = TIE".format(round_))
+        print(
+            Style.BRIGHT
+            + "FINAL RESULT = TIE"
+            + Style.RESET_ALL)
 
-    print("Final Score:")
-    print("\t{}: {}".format(first_player, first_player_score))
-    print("\t{}: {}".format(second_player, second_player_score))
+    # Final Score
+    print()
+    print(Style.BRIGHT + "Final Score" + Style.RESET_ALL)
+    print("{}:\t{}".format(first_player, first_player_score))
+    print("{}:\t{}".format(second_player, second_player_score))
+    print()
 
-    print("Total time:")
-    print("\t{}: {}".format(first_player, format_time(first_player_total)))
-    print("\t{}: {}".format(second_player, format_time(second_player_total)))
+    # Total time
+    print(Style.BRIGHT + "Total time" + Style.RESET_ALL)
+    print("{}:\t{}".format(first_player, format_time(first_player_total)))
+    print("{}:\t{}".format(second_player, format_time(second_player_total)))
+    print()
+
