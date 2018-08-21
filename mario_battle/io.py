@@ -17,7 +17,10 @@ class TooFewCoursesError(Exception):
     """An exception for when too few courses are selected."""
     pass
 
-def print_courses(course_dict=COURSE_DICTIONARY, show_played=True):
+
+def print_courses(                    # pylint: disable=dangerous-default-value
+        course_dict=COURSE_DICTIONARY,
+        show_played=True):
     """Prints a set of Mario 64 courses.
 
     By default, this includes all of the courses, all listed as
