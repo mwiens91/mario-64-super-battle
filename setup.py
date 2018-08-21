@@ -22,7 +22,7 @@ setup(
     description=capitalize(DESCRIPTION),
     long_description=long_description,
     long_description_content_type='text/markdown',
-    url='https://github.com/mwiens91/twitch-game-notify',
+    url='https://github.com/mwiens91/mario-64-super-star-battle',
     author='Branko Bajcetic, Matt Wiens',
     author_email='bajcetic.branko@gmail.com, mwiens91@gmail.com',
     license='BSD 3-clause "New" or "Revised License"',
