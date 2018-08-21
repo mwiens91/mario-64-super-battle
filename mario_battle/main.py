@@ -15,7 +15,12 @@ from mario_battle.io import (
     round_summary,
     time_player,
 )
-from mario_battle.version import VERBOSE_NAME, DESCRIPTION, VERSION
+from mario_battle.version import (
+    BINARY_NAME,
+    DESCRIPTION,
+    VERBOSE_NAME,
+    VERSION,
+)
 
 
 def exit_program(*_, **__):
@@ -28,12 +33,12 @@ def main():
     """The main function."""
     # Add CLI to display help or the version
     parser = argparse.ArgumentParser(
-        prog=VERBOSE_NAME,
-        description="%(prog)s - " + DESCRIPTION)
+        prog=BINARY_NAME,
+        description=VERBOSE_NAME + " - " + DESCRIPTION)
     parser.add_argument(
         '--version',
         action='version',
-        version="%(prog)s " + VERSION)
+        version=VERBOSE_NAME + " version " + VERSION)
 
     parser.parse_args()
 

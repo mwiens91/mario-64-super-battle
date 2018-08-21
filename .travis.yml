@@ -5,16 +5,17 @@ python:
   - "3.5"
   - "3.6"
 
-script:
-  # Do stuff
-  - touch a
-
 install:
   # Install Codecov
   - pip install codecov
 
   # Install requirements
   - pip install -r requirements.txt
+
+script:
+  # Do essentially nothing (yet)
+  - coverage run run_mario64superstarbattle.py --help
+  - coverage run run_mario64superstarbattle.py --version
 
 after_success:
   # Upload code coverage to Codecov
