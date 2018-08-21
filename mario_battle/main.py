@@ -144,12 +144,8 @@ def main():
             final_summary(
                 first_player=first_player,
                 second_player=second_player,
-                first_player_time=first_player_time,
-                second_player_time=second_player_time,
                 first_player_total=first_player_total,
                 second_player_total=second_player_total,
                 first_player_score=first_player_score,
-                second_player_score=second_player_score,
-                round_=round_,
-                course_name=course_name)
+                second_player_score=second_player_score,)
             break

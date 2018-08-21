@@ -476,17 +476,29 @@ def round_summary(
     print("{}:\t{}".format(second_player, second_player_score))
     print()
 
+
 def final_summary(
         first_player,
         second_player,
-        first_player_time,
-        second_player_time,
         first_player_total,
         second_player_total,
         first_player_score,
-        second_player_score,
-        round_,
-        course_name):
+        second_player_score,):
+    """Print final battle summary.
+
+    Args:
+        first_player: A string containing the name of the first player.
+        second_player: A string containing the name of the second
+            player.
+        first_player_total: A float specifying the total time for the
+            first player.
+        second_player_total: A float specifying the total time for the
+            second player.
+        first_player_score: An integer specifying the number of rounds
+            won by the first player.
+        second_player_score: An integer specifying the number of rounds
+            won by the second player.
+    """
     # Title
     title = "FINAL SUMMARY"
 
@@ -494,12 +506,13 @@ def final_summary(
     print(Style.BRIGHT + title + Style.RESET_ALL)
     print('-' * len(title))
     print()
-    if (first_player_score > second_player_score):
+
+    if first_player_score > second_player_score:
         print(
             Style.BRIGHT
             + "{} WON MARIO-64 SUPER STAR BATTLE!".format(first_player)
             + Style.RESET_ALL)
-    elif (second_player_score > first_player_score):
+    elif second_player_score > first_player_score:
         print(
             Style.BRIGHT
             + "{} WON MARIO-64 SUPER STAR BATTLE!!!".format(second_player)
@@ -522,4 +535,3 @@ def final_summary(
     print("{}:\t{}".format(first_player, format_time(first_player_total)))
     print("{}:\t{}".format(second_player, format_time(second_player_total)))
     print()
-

@@ -36,6 +36,10 @@ class MarioBattle:
 
         Arg:
             round_: An integer specifying which round it is.
+
+        Returns:
+            A tuple of two strings, containing the first and second
+            players' names.
         """
         return (self.player1, self.player2) if round_ % 2 == 1 else (self.player2, self.player1)
 
@@ -66,6 +70,19 @@ class MarioBattle:
             second_player,
             first_player_time,
             second_player_time):
+        """Update the players' scores after a round.
+
+
+        Args:
+            first_player: A string containing the name of the first
+                player.
+            second_player: A string containing the name of the second
+                player.
+            first_player_time A float specifying the round time for the
+                first player.
+            second_player_time A float specifying  the round time for
+                the second player.
+        """
         if first_player_time < second_player_time:
             if self.player1 == first_player:
                 self.player1_score += 1
