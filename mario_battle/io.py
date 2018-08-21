@@ -13,6 +13,7 @@ class NameEmptyError(Exception):
     """An exception for when the user leaves their name blank."""
     pass
 
+
 class TooFewCoursesError(Exception):
     """An exception for when too few courses are selected."""
     pass
@@ -54,6 +55,7 @@ def print_courses(                    # pylint: disable=dangerous-default-value
         else:
             print(course_string.format(played=' '))
 
+
 def format_time(seconds):
     """Returns seconds as a formatted string.
 
@@ -61,6 +63,7 @@ def format_time(seconds):
 
     Arg:
         A float containing a number of seconds.
+
     Returns:
         A formatted string containing the time represented by the number
         of seconds passed in.
@@ -70,6 +73,7 @@ def format_time(seconds):
     seconds = seconds - (hours*3600) - (minutes*60)
     time_elapsed = "{:02.0f}:{:02.0f}:{:06.3f}".format(hours, minutes, seconds)
     return time_elapsed
+
 
 def display_welcome_message():
     """Displays a welcome message to the user."""
@@ -81,6 +85,7 @@ def display_welcome_message():
     print(MARIO_ASCII_ART)
     print("visit us at github.com/mwiens91/mario-64-super-star-battle!")
     print()
+
 
 def get_player_names():
     """Gets the player names from the user.
@@ -133,6 +138,7 @@ def get_player_names():
 
     return (player1, player2)
 
+
 def get_number_of_rounds():
     """Gets the number of rounds from the user.
 
@@ -168,12 +174,14 @@ def get_number_of_rounds():
 
     return number
 
+
 def get_courses(min_number_of_courses):
     """Gets the courses to select from from the user.
 
     Arg:
         min_number_of_courses: An integer specifying the minimum number
             of courses that must be selected.
+
     Returns:
         A dictionary (following the schema of COURSE_DICTIONARY from
         constants.py) specifying for each course number, what the name
@@ -237,6 +245,7 @@ def get_courses(min_number_of_courses):
 
     return filtered_courses
 
+
 def display_round_welcome_message(round_):
     """Displays a welcome message for the round.
 
@@ -264,6 +273,7 @@ def get_course(course_selection, player, last_stage=False):
             selecting the course.
         last_stage: An optional boolean specifying if it's the last
             stage.
+
     Returns:
         A two-tuple containing an integer and a string. The integer
         specifies the course number and the string is the course name.
@@ -320,6 +330,7 @@ def get_course(course_selection, player, last_stage=False):
 
     return (course_number, COURSE_DICTIONARY[course_number]['name'])
 
+
 def time_player(player, course_name):
     """Times the user during their course run.
 
@@ -328,6 +339,7 @@ def time_player(player, course_name):
     Args:
         player: A string containing the player name.
         course_name: A string containing the course name.
+
     Returns:
         A float specifying the player's course time in seconds.
     """
@@ -382,6 +394,7 @@ def time_player(player, course_name):
     print()
 
     return total_time
+
 
 def round_summary(
         first_player,
@@ -464,6 +477,7 @@ def round_summary(
     print("{}:\t{}".format(first_player, first_player_score))
     print("{}:\t{}".format(second_player, second_player_score))
     print()
+
 
 def final_summary(
         first_player,

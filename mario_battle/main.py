@@ -21,6 +21,7 @@ def exit_program(*_, **__):
     print("\n\nSee ya!")
     sys.exit(0)
 
+
 def main():
     """The main function."""
     # Register the ending message for a keyboard interrupt
