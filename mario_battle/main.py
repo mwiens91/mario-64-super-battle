@@ -1,5 +1,6 @@
 """Contains the main function for battling."""
 
+import argparse
 import signal
 import sys
 from mario_battle.battle_class import MarioBattle
@@ -14,6 +15,7 @@ from mario_battle.io import (
     round_summary,
     time_player,
 )
+from mario_battle.version import VERBOSE_NAME, DESCRIPTION, VERSION
 
 
 def exit_program(*_, **__):
@@ -24,6 +26,17 @@ def exit_program(*_, **__):
 
 def main():
     """The main function."""
+    # Add CLI to display help or the version
+    parser = argparse.ArgumentParser(
+        prog=VERBOSE_NAME,
+        description="%(prog)s - " + DESCRIPTION)
+    parser.add_argument(
+        '--version',
+        action='version',
+        version="%(prog)s " + VERSION)
+
+    parser.parse_args()
+
     # Register the ending message for a keyboard interrupt
     signal.signal(signal.SIGINT, exit_program)
 

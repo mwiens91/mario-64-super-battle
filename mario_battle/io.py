@@ -7,6 +7,7 @@ from collections import OrderedDict
 from time import time
 from colorama import Fore, Style
 from mario_battle.constants import COURSE_DICTIONARY, MARIO_ASCII_ART
+from mario_battle.version import HOME_URL, VERBOSE_NAME
 
 
 class NameEmptyError(Exception):
@@ -77,13 +78,12 @@ def format_time(seconds):
 
 def display_welcome_message():
     """Displays a welcome message to the user."""
-    title = "Mario 64 Super-Star Battle"
-    print('-' * len(title))
-    print(Style.BRIGHT + title + Style.RESET_ALL)
-    print('-' * len(title))
+    print('-' * len(VERBOSE_NAME))
+    print(Style.BRIGHT + VERBOSE_NAME + Style.RESET_ALL)
+    print('-' * len(VERBOSE_NAME))
     print()
     print(MARIO_ASCII_ART)
-    print("visit us at github.com/mwiens91/mario-64-super-star-battle!")
+    print("visit us at " + HOME_URL + "!")
     print()
 
 

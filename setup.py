@@ -1,7 +1,12 @@
 #!/usr/bin/env python3
 
 from setuptools import setup
-from mario_battle.version import NAME, DESCRIPTION, VERSION
+from mario_battle.version import (
+    BINARY_NAME,
+    DESCRIPTION,
+    HOME_URL,
+    PYPI_NAME,
+    VERSION,)
 
 
 # Parse readme to include in PyPI page
@@ -17,12 +22,12 @@ def capitalize(s):
     return s[:1].upper() + s[1:]
 
 setup(
-    name=NAME,
+    name=PYPI_NAME,
     version=VERSION,
     description=capitalize(DESCRIPTION),
     long_description=long_description,
     long_description_content_type='text/markdown',
-    url='https://github.com/mwiens91/mario-64-super-star-battle',
+    url=HOME_URL,
     author='Branko Bajcetic, Matt Wiens',
     author_email='bajcetic.branko@gmail.com, mwiens91@gmail.com',
     license='BSD 3-clause "New" or "Revised License"',
@@ -34,7 +39,7 @@ setup(
     ],
     packages=['mario_battle'],
     entry_points={
-        'console_scripts': ['m64ssb = mario_battle.main:main'],
+        'console_scripts': [BINARY_NAME + ' = mario_battle.main:main'],
     },
     python_requires='>=3',
     install_requires=[
