@@ -73,16 +73,10 @@ def main():
         first_player, second_player = battle.get_players(round_)
 
         # Determine course
-        if round_ == rounds:
-            # It's the last round!
-            is_last_round = True
-        else:
-            is_last_round = False
-
         course_number, course_name = get_course(
             course_selection=battle.courses,
             player=first_player,
-            last_round=is_last_round)
+            last_round=bool(round_ == rounds))
 
         # First player's turn!
         first_player_time = time_player(
