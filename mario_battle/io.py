@@ -446,9 +446,10 @@ def round_summary(this_round, mario_battle):
     else:
         print(
             Style.BRIGHT
-            + "{} won round {}!".format(
+            + "{} won round {} by {}!".format(
                 this_round.winner,
-                this_round.round_number)
+                this_round.round_number,
+                format_time(this_round.loser_time - this_round.winner_time))
             + Style.RESET_ALL)
 
     print()
