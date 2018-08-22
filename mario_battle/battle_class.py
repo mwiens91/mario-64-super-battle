@@ -140,8 +140,8 @@ class MarioBattle:
             A Round object representing the results of the round.
         """
         # Determine the winner and loser
-        winner = min(post_dict["times"], key=post_dict.get)
-        loser = max(post_dict["times"], key=post_dict.get)
+        winner = min(post_dict["times"], key=post_dict["times"].get)
+        loser = max(post_dict["times"], key=post_dict["times"].get)
 
         # Determine whether the round was a tie
         is_tie = bool(
