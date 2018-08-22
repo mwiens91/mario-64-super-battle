@@ -54,7 +54,7 @@ def main():
     # Get number of rounds
     rounds = get_number_of_rounds()
 
-    # Select which stages to use
+    # Select which course to use
     courses = get_courses(rounds)
 
     # Initialize the battle
@@ -72,17 +72,17 @@ def main():
         # Determine starting player
         first_player, second_player = battle.get_players(round_)
 
-        # Determine stage
+        # Determine course
         if round_ == rounds:
-            course_number, course_name = get_course(
-                course_selection=battle.courses,
-                player=first_player,
-                last_stage=True)
+            # It's the last round!
+            is_last_round = True
         else:
-            course_number, course_name = get_course(
-                course_selection=battle.courses,
-                player=first_player,
-                last_stage=False)
+            is_last_round = False
+
+        course_number, course_name = get_course(
+            course_selection=battle.courses,
+            player=first_player,
+            last_round=is_last_round)
 
         # First player's turn!
         first_player_time = time_player(

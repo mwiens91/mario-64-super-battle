@@ -259,10 +259,10 @@ def display_round_welcome_message(round_):
     print('-' * len(message))
     print()
 
-def get_course(course_selection, player, last_stage=False):
+def get_course(course_selection, player, last_round=False):
     """Asks player which course they want to choose.
 
-    If it's the last stage, the players pick or ban collectively.
+    If it's the last round, the players pick or ban collectively.
 
     Args:
         course_selection: A dictionary (following the schema of
@@ -271,15 +271,15 @@ def get_course(course_selection, player, last_stage=False):
             whether it has already been played.
         player: A string containing the name of the player who is
             selecting the course.
-        last_stage: An optional boolean specifying if it's the last
-            stage.
+        last_round: An optional boolean specifying if it's the last
+            round.
 
     Returns:
         A two-tuple containing an integer and a string. The integer
         specifies the course number and the string is the course name.
     """
     # Prompt the player to select a course
-    if last_stage:
+    if last_round:
         prompt_msg = (
             Style.BRIGHT
             + "Sudden death!"
