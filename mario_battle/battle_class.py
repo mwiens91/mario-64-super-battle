@@ -41,7 +41,10 @@ class MarioBattle:
             A tuple of two strings, containing the first and second
             players' names.
         """
-        return (self.player1, self.player2) if round_ % 2 == 1 else (self.player2, self.player1)
+        # Alternate first player every round
+        if round_ % 2 == 1:
+            return (self.player1, self.player2)
+        return (self.player2, self.player1)
 
     def post_results(self, post_dict):
         """Stores round results into results list and updates total times.
