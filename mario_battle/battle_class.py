@@ -64,39 +64,28 @@ class MarioBattle:
         # Update the total time
         self.add_times(post_dict["times"])
 
+        # Update the players' scores
+        self.update_scores(post_dict["times"]
+
         # Mark the course just played as played
         self.courses[post_dict["course"]]["played"] = True
 
-    def update_scores(
-            self,
-            first_player,
-            second_player,
-            first_player_time,
-            second_player_time):
+    def update_scores(self, times):
         """Update the players' scores after a round.
 
+        Arg:
+            times: A dictionary containing the round times of the
+                players. For example,
 
-        Args:
-            first_player: A string containing the name of the first
-                player.
-            second_player: A string containing the name of the second
-                player.
-            first_player_time A float specifying the round time for the
-                first player.
-            second_player_time A float specifying  the round time for
-                the second player.
+                 {'times': {'Matt': 69.420,
+                            'Branko': 420.69}}
         """
-        if first_player_time < second_player_time:
-            if self.player1 == first_player:
-                self.player1_score += 1
-            else:
-                self.player2_score += 1
-        elif second_player_time < first_player_time:
-            if self.player1 == first_player:
-                self.player2_score += 1
-            else:
-                self.player1_score += 1
+        if times[self.player1] < times[self.player2]:
+            self.player1_score += 1
+        elif times[self.player1] > times[self.player2]:
+            self.player2_score += 1
         else:
+            # Tie!
             pass
 
     def add_times(self, times):

@@ -94,13 +94,6 @@ def main():
             player=second_player,
             course_name=course_name)
 
-        #Update player scores
-        battle.update_scores(
-            first_player=first_player,
-            second_player=second_player,
-            first_player_time=first_player_time,
-            second_player_time=second_player_time)
-
         # Return results and update total times
         post_dict = {
             'round': round_,
