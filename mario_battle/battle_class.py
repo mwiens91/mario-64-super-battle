@@ -88,7 +88,7 @@ class MarioBattle:
         self.results.append(post_dict)
 
         # Update the total time
-        self.add_times(post_dict["times"])
+        self.update_total_times(post_dict["times"])
 
         # Update the players' scores
         self.update_scores(post_dict["times"])
@@ -114,7 +114,7 @@ class MarioBattle:
             # Tie!
             pass
 
-    def add_times(self, times):
+    def update_total_times(self, times):
         """Add round times to the total times.
 
         Arg:
