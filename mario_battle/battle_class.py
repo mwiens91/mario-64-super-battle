@@ -65,7 +65,7 @@ class MarioBattle:
         self.add_times(post_dict["times"])
 
         # Update the players' scores
-        self.update_scores(post_dict["times"]
+        self.update_scores(post_dict["times"])
 
         # Mark the course just played as played
         self.courses[post_dict["course"]]["played"] = True
