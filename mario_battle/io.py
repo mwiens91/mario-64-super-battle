@@ -6,7 +6,7 @@ Does some processing, too. All using the command line, at present.
 from collections import OrderedDict
 from time import time
 from colorama import Fore, Style
-from mario_battle.constants import COURSE_DICTIONARY, MARIO_ASCII_ART
+from mario_battle.constants import COURSE_DICTIONARY, MARIO_ASCII_ART, TIE
 from mario_battle.version import HOME_URL, VERBOSE_NAME
 
 
@@ -396,43 +396,19 @@ def time_player(player, course_name):
     return total_time
 
 
-def round_summary(
-        first_player,
-        second_player,
-        first_player_time,
-        second_player_time,
-        first_player_total,
-        second_player_total,
-        first_player_score,
-        second_player_score,
-        round_,
-        course_name):
+def round_summary(this_round, mario_battle):
     """Print round summary.
 
     Summary includes current round times, overall player times, and
     updated score.
 
     Args:
-        first_player: A string containing the name of the first player.
-        second_player: A string containing the name of the second
-            player.
-        first_player_time A float specifying the round time for the
-            first player.
-        second_player_time A float specifying  the round time for the
-            second player.
-        first_player_total: A float specifying the total time for the
-            first player.
-        second_player_total: A float specifying the total time for the
-            second player.
-        first_player_score: An integer specifying the number of rounds
-            won by the first player.
-        second_player_score: An integer specifying the number of rounds
-            won by the second player.
-        round_: An integer specifying which around it is.
-        course_name: A string containing the name of the course.
+        this_round: A Round object containing the round results.
+        mario_battle: A MarioBattle object containing overall battle
+            results.
     """
     # Title
-    title = "ROUND {} SUMMARY".format(round_)
+    title = "ROUND {} SUMMARY".format(this_round.round_number)
 
     print('-' * len(title))
     print(Style.BRIGHT + title + Style.RESET_ALL)
@@ -442,62 +418,57 @@ def round_summary(
     # Round time
     print(
         Style.BRIGHT
-        + course_name
+        + this_round.course_name
         + " time"
         + Style.RESET_ALL)
-    print("{}:\t{}".format(first_player, format_time(first_player_time)))
-    print("{}:\t{}".format(second_player, format_time(second_player_time)))
+    print("{}:\t{}".format(
+        this_round.winner,
+        format_time(this_round.winner_time)))
+    print("{}:\t{}".format(
+        this_round.loser,
+        format_time(this_round.loser_time)))
     print()
 
     # Total time
     print(Style.BRIGHT + "Total time" + Style.RESET_ALL)
-    print("{}:\t{}".format(first_player, format_time(first_player_total)))
-    print("{}:\t{}".format(second_player, format_time(second_player_total)))
+    print("{}:\t{}".format(
+        this_round.winner,
+        format_time(mario_battle.get_player_total_time(this_round.winner))))
+    print("{}:\t{}".format(
+        this_round.loser,
+        format_time(mario_battle.get_player_total_time(this_round.loser))))
     print()
 
-    if first_player_time < second_player_time:
-        print(
-            Style.BRIGHT
-            + "{} won round {}!".format(first_player, round_)
-            + Style.RESET_ALL)
-    elif second_player_time < first_player_time:
-        print(
-            Style.BRIGHT
-            + "{} won round {}!".format(second_player, round_)
-            + Style.RESET_ALL)
+    if this_round.was_tie:
+        print(Style.BRIGHT
+              + "Round {}: TIE".format(this_round.round_number)
+              + Style.RESET_ALL)
     else:
-        print(Style.BRIGHT + "Round {}: TIE".format(round_) + Style.RESET_ALL)
+        print(
+            Style.BRIGHT
+            + "{} won round {}!".format(
+                this_round.winner,
+                this_round.round_number)
+            + Style.RESET_ALL)
 
     print()
 
     # Score
     print(Style.BRIGHT + "Score" + Style.RESET_ALL)
-    print("{}:\t{}".format(first_player, first_player_score))
-    print("{}:\t{}".format(second_player, second_player_score))
+    print("{}:\t{}".format(
+        this_round.winner,
+        mario_battle.get_player_score(this_round.winner)))
+    print("{}:\t{}".format(
+        this_round.loser,
+        mario_battle.get_player_score(this_round.loser)))
     print()
 
 
-def final_summary(
-        first_player,
-        second_player,
-        first_player_total,
-        second_player_total,
-        first_player_score,
-        second_player_score,):
+def final_summary(game_results):
     """Print final battle summary.
 
-    Args:
-        first_player: A string containing the name of the first player.
-        second_player: A string containing the name of the second
-            player.
-        first_player_total: A float specifying the total time for the
-            first player.
-        second_player_total: A float specifying the total time for the
-            second player.
-        first_player_score: An integer specifying the number of rounds
-            won by the first player.
-        second_player_score: An integer specifying the number of rounds
-            won by the second player.
+    Arg:
+        game_results: A MarioBattle object containing the results of the game.
     """
     # Title
     title = "FINAL SUMMARY"
@@ -507,31 +478,43 @@ def final_summary(
     print('-' * len(title))
     print()
 
-    if first_player_score > second_player_score:
-        print(
-            Style.BRIGHT
-            + "{} WON MARIO-64 SUPER STAR BATTLE!".format(first_player)
-            + Style.RESET_ALL)
-    elif second_player_score > first_player_score:
-        print(
-            Style.BRIGHT
-            + "{} WON MARIO-64 SUPER STAR BATTLE!!!".format(second_player)
-            + Style.RESET_ALL)
-    else:
+    # Get winner and loser
+    winner = game_results.get_winning_player()
+    loser = game_results.get_losing_player()
+
+    if winner == TIE:
         print(
             Style.BRIGHT
             + "FINAL RESULT = TIE"
             + Style.RESET_ALL)
 
+        # Randomly assign winners and loser variables so we can use them
+        # later
+        winner = game_results.player1
+        loser = game_results.player2
+    else:
+        print(
+            Style.BRIGHT
+            + "{} WON MARIO-64 SUPER STAR BATTLE!".format(winner)
+            + Style.RESET_ALL)
+
     # Final Score
     print()
     print(Style.BRIGHT + "Final Score" + Style.RESET_ALL)
-    print("{}:\t{}".format(first_player, first_player_score))
-    print("{}:\t{}".format(second_player, second_player_score))
+    print("{}:\t{}".format(
+        winner,
+        game_results.get_player_score(winner)))
+    print("{}:\t{}".format(
+        loser,
+        game_results.get_player_score(loser)))
     print()
 
     # Total time
     print(Style.BRIGHT + "Total time" + Style.RESET_ALL)
-    print("{}:\t{}".format(first_player, format_time(first_player_total)))
-    print("{}:\t{}".format(second_player, format_time(second_player_total)))
+    print("{}:\t{}".format(
+        winner,
+        format_time(game_results.get_player_total_time(winner))))
+    print("{}:\t{}".format(
+        loser,
+        format_time(game_results.get_player_total_time(loser))))
     print()

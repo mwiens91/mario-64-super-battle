@@ -1,6 +1,7 @@
 """Contains an object to keep track of battle results."""
 
 import random
+from mario_battle.constants import TIE
 
 
 class MarioBattle:
@@ -23,13 +24,8 @@ class MarioBattle:
             course number, what the name of the course is and whether it
             has already been played.
         num_rounds: An integer specifying the total number of rounds.
-        results: A list containing dictionaries specifing the results of
-            each round. For example,
-
-            {'round': 1,
-             'course': 5,
-             'times': {'Matt': 420.69,
-                       'Branko': 69.420}}
+        results: A list containing Round objects representing the
+            results of each round.
     """
     def __init__(self, player1, player2, courses, num_rounds):
         """Initialize the battle.
@@ -53,7 +49,63 @@ class MarioBattle:
         self.player2_total_time = 0
         self.courses = courses
         self.num_rounds = num_rounds
-        self.results = [] #list of <round_num, course, times> dict
+        self.results = []
+
+    def get_winning_player(self):
+        """Returns the player in the lead.
+
+        Returns:
+            A string containing the winning player's name, or
+            constants.TIE if it's currently a tie.
+        """
+        if self.player1_score == self.player2_score:
+            return TIE
+        elif self.player1_score > self.player2_score:
+            return self.player1
+        return self.player2
+
+    def get_losing_player(self):
+        """Returns the player not in the lead.
+
+        Returns:
+            A string containing the losing player's name, or
+            constants.TIE if it's currently a tie.
+        """
+        if self.player1_score == self.player2_score:
+            return TIE
+        elif self.player1_score < self.player2_score:
+            return self.player1
+        return self.player2
+
+    def get_player_score(self, player_name):
+        """Returns the score of a player.
+
+        Arg:
+            player_name: A string containing the player name to get
+                the score for.
+
+        Returns:
+            An integer specifying the player's score.
+        """
+        if player_name == self.player1:
+            return self.player1_score
+
+        return self.player2_score
+
+    def get_player_total_time(self, player_name):
+        """Returns the total time of a player.
+
+        Arg:
+            player_name: A string containing the player name to get
+                the time for.
+
+        Returns:
+            A float specifying the player's total time.
+        """
+        if player_name == self.player1:
+            return self.player1_total_time
+
+        return self.player2_total_time
 
     def get_players(self, round_):
         """Returns players in order of whose turn it is.
@@ -83,9 +135,30 @@ class MarioBattle:
                  'course': 5,
                  'times': {'Matt': 420.69,
                            'Branko': 69.420}}
+
+        Returns:
+            A Round object representing the results of the round.
         """
-        # Append to the results list
-        self.results.append(post_dict)
+        # Determine the winner and loser
+        winner = min(post_dict["times"], key=post_dict.get)
+        loser = max(post_dict["times"], key=post_dict.get)
+
+        # Determine whether the round was a tie
+        is_tie = bool(
+            post_dict["times"][winner] == post_dict["times"][loser])
+
+        # Record the results
+        this_round = Round(
+            winner=winner,
+            loser=loser,
+            winner_time=post_dict["times"][winner],
+            loser_time=post_dict["times"][loser],
+            course_name=(
+                self.courses[post_dict["course"]]["name"]),
+            round_number=post_dict["round"],
+            was_tie=is_tie)
+
+        self.results.append(this_round)
 
         # Update the total time
         self.update_total_times(post_dict["times"])
@@ -95,6 +168,9 @@ class MarioBattle:
 
         # Mark the course just played as played
         self.courses[post_dict["course"]]["played"] = True
+
+        # Return the Round object
+        return this_round
 
     def update_scores(self, times):
         """Update the players' scores after a round.
@@ -142,6 +218,7 @@ class Round:
             the loser.
         course_name: A string containing the name of the course.
         round_number: An integer specifying which around it is.
+        was_tie: A boolean specifying whether the round was a tie.
     """
     def __init__(
             self,
@@ -150,7 +227,8 @@ class Round:
             winner_time,
             loser_time,
             course_name,
-            round_number):
+            round_number,
+            was_tie=False):
         """Store the round information.
 
         Args:
@@ -164,6 +242,8 @@ class Round:
                 by the loser.
             course_name: A string containing the name of the course.
             round_number: An integer specifying which around it is.
+            was_tie: An optional boolean specifying whether the round
+                was a tie. Defaults to False.
         """
         self.winner = winner
         self.loser = loser
@@ -171,3 +251,4 @@ class Round:
         self.loser_time = loser_time
         self.course_name = course_name
         self.round_number = round_number
+        self.was_tie = was_tie

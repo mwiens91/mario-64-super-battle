@@ -12,9 +12,6 @@
 
 + Add high-coverage tests for Travis CI
 + Handle ties better
-+ Create a `Round` class to store round info
-+ Clean up long-winded code; one idea is to pass the `MarioBattle`
-  object on to `io` functions directly
 + Add a pause feature
 + Show the time elapsed while a player is making their run
 

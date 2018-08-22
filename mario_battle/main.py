@@ -98,41 +98,17 @@ def main():
             }
         }
 
-        battle.post_results(post_dict)
-
-        # Determine who's who
-        if first_player == player1:
-            first_player_total = battle.player1_total_time
-            first_player_score = battle.player1_score
-            second_player_total = battle.player2_total_time
-            second_player_score = battle.player2_score
-        else:
-            first_player_total = battle.player2_total_time
-            first_player_score = battle.player2_score
-            second_player_total = battle.player1_total_time
-            second_player_score = battle.player1_score
+        # Get the results from the round
+        this_round = battle.post_results(post_dict)
 
         # Summarize round results
-        round_summary(
-            first_player=first_player,
-            second_player=second_player,
-            first_player_time=first_player_time,
-            second_player_time=second_player_time,
-            first_player_total=first_player_total,
-            second_player_total=second_player_total,
-            first_player_score=first_player_score,
-            second_player_score=second_player_score,
-            round_=round_,
-            course_name=course_name)
+        round_summary(this_round, battle)
 
+        # Check if the game is over
         if (round_ == battle.num_rounds
                 or battle.player1_score * 2 > battle.num_rounds
                 or battle.player2_score * 2 > battle.num_rounds):
-            final_summary(
-                first_player=first_player,
-                second_player=second_player,
-                first_player_total=first_player_total,
-                second_player_total=second_player_total,
-                first_player_score=first_player_score,
-                second_player_score=second_player_score,)
-            break
+            # End!
+            final_summary(battle)
+
+            sys.exit(0)

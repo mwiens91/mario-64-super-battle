@@ -41,3 +41,6 @@ MARIO_ASCII_ART = """__▒▒▒▒▒
 –▓▓▓———-▓▓▓
 ▓▓▓▓———-▓▓▓▓
 """
+
+# A string representing a tie
+TIE = "tie"
