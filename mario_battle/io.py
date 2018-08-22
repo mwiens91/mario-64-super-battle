@@ -429,16 +429,6 @@ def round_summary(this_round, mario_battle):
         format_time(this_round.loser_time)))
     print()
 
-    # Total time
-    print(Style.BRIGHT + "Total time" + Style.RESET_ALL)
-    print("{}:\t{}".format(
-        this_round.winner,
-        format_time(mario_battle.get_player_total_time(this_round.winner))))
-    print("{}:\t{}".format(
-        this_round.loser,
-        format_time(mario_battle.get_player_total_time(this_round.loser))))
-    print()
-
     if this_round.was_tie:
         print(Style.BRIGHT
               + "Round {}: TIE".format(this_round.round_number)
@@ -452,6 +442,16 @@ def round_summary(this_round, mario_battle):
                 format_time(this_round.loser_time - this_round.winner_time))
             + Style.RESET_ALL)
 
+    print()
+
+    # Total time
+    print(Style.BRIGHT + "Total time" + Style.RESET_ALL)
+    print("{}:\t{}".format(
+        this_round.winner,
+        format_time(mario_battle.get_player_total_time(this_round.winner))))
+    print("{}:\t{}".format(
+        this_round.loser,
+        format_time(mario_battle.get_player_total_time(this_round.loser))))
     print()
 
     # Score
