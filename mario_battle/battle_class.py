@@ -4,8 +4,34 @@ import random
 
 
 class MarioBattle:
-    """Class to store battle results."""
-    def __init__(self, player1, player2, num_rounds, courses):
+    """Class to store battle results.
+
+    Attributes:
+        player1: A string containing the name of the first player.
+        player2: A string containing the name of the second player.
+        player1_score: An integer specifying the score of the first
+            player.
+        player2_score: An integer specifying the score of the second
+            player.
+        player1_total_time: A float specifying the total time (in
+            seconds) taken by the first player.
+        player2_total_time: A float specifying the total time (in
+            seconds) taken by the second player.
+        courses: A dictionary containing the courses that are eligible
+            to be played. This, following the schema of
+            COURSE_DICTIONARY from constants.py, specified for each
+            course number, what the name of the course is and whether it
+            has already been played.
+        num_rounds: An integer specifying the total number of rounds.
+        results: A list containing dictionaries specifing the results of
+            each round. For example,
+
+            {'round': 1,
+             'course': 5,
+             'times': {'Matt': 420.69,
+                       'Branko': 69.420}}
+    """
+    def __init__(self, player1, player2, courses, num_rounds):
         """Initialize the battle.
 
         Initialize player names, number of rounds, and the courses chosen to play.
@@ -13,20 +39,20 @@ class MarioBattle:
         Args:
             player1: A string containing the name of the first player.
             player2: A string containing the name of the second player.
-            num_round: An integer specifying the number of rounds.
             courses: A dictionary (following the schema of
                 COURSE_DICTIONARY from constants.py) specifying for each
                 selected course number, what the name of the course is
                 and whether it has already been played.
+            num_rounds: An integer specifying the total number of rounds.
         """
-        self.courses = courses
         self.player1 = random.choice([player1, player2])
         self.player2 = player2 if self.player1 == player1 else player1
-        self.num_rounds = num_rounds
         self.player1_score = 0
         self.player2_score = 0
         self.player1_total_time = 0
         self.player2_total_time = 0
+        self.courses = courses
+        self.num_rounds = num_rounds
         self.results = [] #list of <round_num, course, times> dict
 
     def get_players(self, round_):

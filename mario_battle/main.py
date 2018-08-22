@@ -61,8 +61,8 @@ def main():
     battle = MarioBattle(
         player1=player1,
         player2=player2,
-        num_rounds=rounds,
-        courses=courses)
+        courses=courses,
+        num_rounds=rounds,)
 
     # Battle!
     for round_ in range(1, rounds + 1):
