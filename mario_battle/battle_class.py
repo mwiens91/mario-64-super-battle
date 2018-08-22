@@ -126,3 +126,48 @@ class MarioBattle:
         """
         self.player1_total_time += times[self.player1]
         self.player2_total_time += times[self.player2]
+
+
+class Round:
+    """Class to store battle results.
+
+    Attributes:
+        winner: A string containing the name of the player who won the
+            round.
+        loser: A string containing the name of the player who lost the
+            round.
+        winner_time: A float specifying the number of seconds taken by
+            the winner.
+        loser_time: A float specifying the number of seconds taken by
+            the loser.
+        course_name: A string containing the name of the course.
+        round_number: An integer specifying which around it is.
+    """
+    def __init__(
+            self,
+            winner,
+            loser,
+            winner_time,
+            loser_time,
+            course_name,
+            round_number):
+        """Store the round information.
+
+        Args:
+            winner: A string containing the name of the player who won
+                the round.
+            loser: A string containing the name of the player who lost
+                the round.
+            winner_time: A float specifying the number of seconds taken
+                by the winner.
+            loser_time: A float specifying the number of seconds taken
+                by the loser.
+            course_name: A string containing the name of the course.
+            round_number: An integer specifying which around it is.
+        """
+        self.winner = winner
+        self.loser = loser
+        self.winner_time = winner_time
+        self.loser_time = loser_time
+        self.course_name = course_name
+        self.round_number = round_number
