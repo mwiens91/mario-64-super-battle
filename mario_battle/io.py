@@ -168,7 +168,7 @@ def get_number_of_rounds():
             # All good
             break
         except ValueError:
-            print(Fore.RED + "One integers only please!" + Style.RESET_ALL)
+            print(Fore.RED + "One integer only please!" + Style.RESET_ALL)
         except AssertionError:
             print(Fore.RED
                   + "Yikes! Pick an allowed number of rounds!"
