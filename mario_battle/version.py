@@ -2,7 +2,7 @@
 
 # Various flavours of the program name
 VERBOSE_NAME = 'Mario 64 Super-Star Battle'
-BINARY_NAME = 'sm64ssb'
+BINARY_NAME = 'm64ssb'
 PYPI_NAME = 'mario-64-super-star-battle'
 
 # Description. Things that use this will capitalize the first letter if
