@@ -15,6 +15,7 @@ from mario_battle.io import (
     round_summary,
     time_player,
 )
+from mario_battle.markdown_summary import generate_markdown_summary
 from mario_battle.version import (
     BINARY_NAME,
     DESCRIPTION,
@@ -36,11 +37,15 @@ def main():
         prog=BINARY_NAME,
         description=VERBOSE_NAME + " - " + DESCRIPTION)
     parser.add_argument(
+        '--save-results',
+        action='store_true',
+        help="save results in Markdown to a file")
+    parser.add_argument(
         '--version',
         action='version',
         version=VERBOSE_NAME + " version " + VERSION)
 
-    parser.parse_args()
+    runtime_args = parser.parse_args()
 
     # Register the ending message for a keyboard interrupt
     signal.signal(signal.SIGINT, exit_program)
@@ -113,3 +118,7 @@ def main():
 
     # Show the final summary
     final_summary(battle)
+
+    # Print results to a file if this option was specified
+    if runtime_args.save_results:
+        generate_markdown_summary(battle)
