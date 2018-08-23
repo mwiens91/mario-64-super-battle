@@ -9,7 +9,6 @@
 
 + Add high-coverage tests for Travis CI
 + Handle ties better
-+ Add a pause feature
 + Show the time elapsed while a player is making their run
 
 ## Much less specific

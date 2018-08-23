@@ -348,39 +348,82 @@ def time_player(player, course_name):
     Returns:
         A float specifying the player's course time in seconds.
     """
-    input(
-        Style.BRIGHT
-        + player
-        + Style.RESET_ALL
-        + ", press enter to begin your run. > ")
-
-    start_time = time()
-
+    # Loop part of this function in case the player wants to reset
     while True:
-        # End timer
-        input(
+        # Use this to break out of nested loops
+        is_done = False
+
+        # Tell the player it's their turn
+        print(
             Style.BRIGHT
             + player
             + Style.RESET_ALL
-            + ", press enter to stop your run. > ")
-        stop_time = time()
+            + ", it's your turn!")
+        print()
 
-        # Validate
-        print("Time recorded. "
-              + Style.BRIGHT
-              + "If this was a mistake enter \"c\" "
-              + Style.RESET_ALL
-              + "(for continue) to keep timing. "
-              + "Otherwise hit enter.")
+        # Prompt to start
+        while True:
+            answer = input("Start run [y, ?]? ")
 
-        answer = input("> ")
+            if answer == "y":
+                # Start!
+                break
+            else:
+                # Print help
+                print(Style.BRIGHT
+                      + "y - start the run\n"
+                      + "? - print help"
+                      + Style.RESET_ALL)
 
-        if answer.strip() in ['c', 'C']:
-            continue
-        else:
+        start_time = time()
+        print()
+
+        # Prompt to stop
+        while True:
+            answer = input("Finish run [y, p, r, ?]? ")
+
+            if answer == "y":
+                # Stop!
+                is_done = True
+                break
+            elif answer == "p":
+                # Pause!
+                start_of_pause = time()
+
+                # Prompt to unpause
+                while True:
+                    unpause_answer = input("Unpause [y, ?]? ")
+
+                    if unpause_answer == "y":
+                        # Unpause. Give the player back the paused time.
+                        start_time += time() - start_of_pause
+                        break
+                    else:
+                        # Print help
+                        print(Style.BRIGHT
+                              + "y - unpause the run\n"
+                              + "? - print help"
+                              + Style.RESET_ALL)
+            elif answer == "r":
+                # Reset!
+                print("Resetting")
+                print()
+                break
+            else:
+                # Print help
+                print(Style.BRIGHT
+                      + "y - finish the run\n"
+                      + "p - pause the run\n"
+                      + "r - reset the run\n"
+                      + "? - print help"
+                      + Style.RESET_ALL)
+
+        # Break out of the reset loop if we're truly done
+        if is_done:
             break
 
-    total_time = stop_time - start_time
+    # Out of the loop. Print the player's time
+    total_time = time() - start_time
 
     print()
     print(
