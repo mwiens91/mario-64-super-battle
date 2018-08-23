@@ -264,6 +264,7 @@ def display_round_welcome_message(round_):
     print('-' * len(message))
     print()
 
+
 def get_course(course_selection, player, last_round=False):
     """Asks player which course they want to choose.
 
