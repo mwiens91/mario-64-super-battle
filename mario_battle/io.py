@@ -6,7 +6,12 @@ Does some processing, too. All using the command line, at present.
 from collections import OrderedDict
 from time import time
 from colorama import Fore, Style
-from mario_battle.constants import COURSE_DICTIONARY, MARIO_ASCII_ART, TIE
+from mario_battle.constants import (
+    COURSE_DICTIONARY,
+    MARIO_ASCII_ART,
+    MAX_NAME_LENGTH,
+    TIE,
+)
 from mario_battle.version import HOME_URL, VERBOSE_NAME
 
 
@@ -421,10 +426,10 @@ def round_summary(this_round, mario_battle):
         + this_round.course_name
         + " time"
         + Style.RESET_ALL)
-    print("{}:\t{}".format(
+    print(("{:" + str(MAX_NAME_LENGTH) + "}\t{}").format(
         this_round.winner,
         format_time(this_round.winner_time)))
-    print("{}:\t{}".format(
+    print(("{:" + str(MAX_NAME_LENGTH) + "}\t{}").format(
         this_round.loser,
         format_time(this_round.loser_time)))
     print()
@@ -446,20 +451,20 @@ def round_summary(this_round, mario_battle):
 
     # Total time
     print(Style.BRIGHT + "Total time" + Style.RESET_ALL)
-    print("{}:\t{}".format(
+    print(("{:" + str(MAX_NAME_LENGTH) + "}\t{}").format(
         this_round.winner,
         format_time(mario_battle.get_player_total_time(this_round.winner))))
-    print("{}:\t{}".format(
+    print(("{:" + str(MAX_NAME_LENGTH) + "}\t{}").format(
         this_round.loser,
         format_time(mario_battle.get_player_total_time(this_round.loser))))
     print()
 
     # Score
     print(Style.BRIGHT + "Score" + Style.RESET_ALL)
-    print("{}:\t{}".format(
+    print(("{:" + str(MAX_NAME_LENGTH) + "}\t{}").format(
         this_round.winner,
         mario_battle.get_player_score(this_round.winner)))
-    print("{}:\t{}".format(
+    print(("{:" + str(MAX_NAME_LENGTH) + "}\t{}").format(
         this_round.loser,
         mario_battle.get_player_score(this_round.loser)))
     print()
@@ -502,20 +507,20 @@ def final_summary(game_results):
     # Final Score
     print()
     print(Style.BRIGHT + "Final Score" + Style.RESET_ALL)
-    print("{}:\t{}".format(
+    print(("{:" + str(MAX_NAME_LENGTH) + "}\t{}").format(
         winner,
         game_results.get_player_score(winner)))
-    print("{}:\t{}".format(
+    print(("{:" + str(MAX_NAME_LENGTH) + "}\t{}").format(
         loser,
         game_results.get_player_score(loser)))
     print()
 
     # Total time
     print(Style.BRIGHT + "Total time" + Style.RESET_ALL)
-    print("{}:\t{}".format(
+    print(("{:" + str(MAX_NAME_LENGTH) + "}\t{}").format(
         winner,
         format_time(game_results.get_player_total_time(winner))))
-    print("{}:\t{}".format(
+    print(("{:" + str(MAX_NAME_LENGTH) + "}\t{}").format(
         loser,
         format_time(game_results.get_player_total_time(loser))))
     print()

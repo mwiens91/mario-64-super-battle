@@ -44,3 +44,7 @@ MARIO_ASCII_ART = """__▒▒▒▒▒
 
 # A string representing a tie
 TIE = "tie"
+
+# How much space (in characters) we should leave for a name. If the name
+# is longer then the formatting might not be pretty.
+MAX_NAME_LENGTH = 20
