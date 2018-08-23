@@ -13,4 +13,4 @@ DESCRIPTION = "the ultimate competition between Mario 64 superstars"
 HOME_URL = 'https://github.com/mwiens91/mario-64-super-star-battle'
 
 # Version number
-VERSION = '0.0.3'
+VERSION = '0.0.4'
