@@ -496,7 +496,7 @@ def final_summary(game_results):
     else:
         print(
             Style.BRIGHT
-            + "{} WON MARIO-64 SUPER STAR BATTLE!".format(winner)
+            + "{} won {}!".format(winner, VERBOSE_NAME)
             + Style.RESET_ALL)
 
     # Final Score
