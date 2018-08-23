@@ -541,7 +541,7 @@ def final_summary(game_results):
     if winner == TIE:
         print(
             Style.BRIGHT
-            + "FINAL RESULT = TIE"
+            + "A tie! Rejoice in your shared victory!"
             + Style.RESET_ALL)
 
         # Randomly assign winners and loser variables so we can use them

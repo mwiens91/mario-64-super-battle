@@ -8,7 +8,6 @@
 ## Less Specific
 
 + Add high-coverage tests for Travis CI
-+ Handle ties better
 
 ## Much less specific
 
