@@ -4,7 +4,6 @@
 
 + Add feature to a PDF with final results (could support other formats,
   too, like Markdown, plain text, JSON)
-+ Add terminal-colour-agnostic colours to highlight players with
 
 ## Less Specific
 
