@@ -380,7 +380,7 @@ def time_player(player, course_name):
 
         # Prompt to stop
         while True:
-            answer = input("Finish run [y, p, r, ?]? ")
+            answer = input("Finish run [y, p, r, t, ?]? ")
 
             if answer == "y":
                 # Stop!
@@ -392,16 +392,19 @@ def time_player(player, course_name):
 
                 # Prompt to unpause
                 while True:
-                    unpause_answer = input("Unpause [y, ?]? ")
+                    unpause_answer = input("Unpause [y, t, ?]? ")
 
                     if unpause_answer == "y":
                         # Unpause. Give the player back the paused time.
                         start_time += time() - start_of_pause
                         break
+                    elif unpause_answer == "t":
+                        print(format_time(start_of_pause - start_time))
                     else:
                         # Print help
                         print(Style.BRIGHT
                               + "y - unpause the run\n"
+                              + "t - show elapsed time for the run\n"
                               + "? - print help"
                               + Style.RESET_ALL)
             elif answer == "r":
@@ -409,12 +412,16 @@ def time_player(player, course_name):
                 print("Resetting")
                 print()
                 break
+            elif answer == "t":
+                # Print elapsed time
+                print(format_time(time() - start_time))
             else:
                 # Print help
                 print(Style.BRIGHT
                       + "y - finish the run\n"
                       + "p - pause the run\n"
                       + "r - reset the run\n"
+                      + "t - show elapsed time for the run\n"
                       + "? - print help"
                       + Style.RESET_ALL)
 
