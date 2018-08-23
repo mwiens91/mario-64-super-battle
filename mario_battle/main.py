@@ -109,6 +109,7 @@ def main():
                 or battle.player1_score * 2 > battle.num_rounds
                 or battle.player2_score * 2 > battle.num_rounds):
             # End!
-            final_summary(battle)
+            break
 
-            sys.exit(0)
+    # Show the final summary
+    final_summary(battle)
