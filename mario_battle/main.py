@@ -37,11 +37,11 @@ def main():
         prog=BINARY_NAME,
         description=VERBOSE_NAME + " - " + DESCRIPTION)
     parser.add_argument(
-        '--save-results',
+        '--save-results', '-s',
         action='store_true',
         help="save results in Markdown to a file")
     parser.add_argument(
-        '--version',
+        '--version', '-v',
         action='version',
         version=VERBOSE_NAME + " version " + VERSION)
 
