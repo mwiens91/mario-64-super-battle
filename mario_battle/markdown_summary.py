@@ -18,6 +18,7 @@ def generate_markdown_summary(battle_results):
 
     print("Saving summary to {}".format(file_path))
 
+    # TODO(mwiens91): avoid code repetition with all the `file=f`s
     with open(file_path, 'w') as f:
         # Print title
         print("# " + VERBOSE_NAME, file=f)
