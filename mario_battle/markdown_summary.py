@@ -10,16 +10,12 @@ def generate_markdown_summary(battle_results):
     Args:
         battle_results: A MarioBattle object.
     """
-    file_path = (
-        str(datetime.now().date())
-        + "_"
-        + PYPI_NAME
-        + ".md")
+    file_path = str(datetime.now().date()) + "_" + PYPI_NAME + ".md"
 
     print("Saving summary to {}".format(file_path))
 
     # TODO(mwiens91): avoid code repetition with all the `file=f`s
-    with open(file_path, 'w') as f:
+    with open(file_path, "w") as f:
         # Print title
         print("# " + VERBOSE_NAME, file=f)
         print(file=f)

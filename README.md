@@ -2,6 +2,7 @@
 [![codecov](https://codecov.io/gh/mwiens91/mario-64-super-star-battle/branch/master/graph/badge.svg)](https://codecov.io/gh/mwiens91/mario-64-super-star-battle)
 [![PyPI](https://img.shields.io/pypi/v/mario-64-super-star-battle.svg)](https://pypi.org/project/mario-64-super-star-battle/)
 [![PyPI - Python Version](https://img.shields.io/pypi/pyversions/mario-64-super-star-battle.svg)](https://pypi.org/project/mario-64-super-star-battle/)
+[![Code style: black](https://img.shields.io/badge/code%20style-black-000000.svg)](https://github.com/ambv/black)
 
 # Mario 64 Super-Star Battle
 

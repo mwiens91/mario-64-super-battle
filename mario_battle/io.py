@@ -17,17 +17,19 @@ from mario_battle.version import HOME_URL, VERBOSE_NAME
 
 class NameEmptyError(Exception):
     """An exception for when the user leaves their name blank."""
+
     pass
 
 
 class TooFewCoursesError(Exception):
     """An exception for when too few courses are selected."""
+
     pass
 
 
-def print_courses(                    # pylint: disable=dangerous-default-value
-        course_dict=COURSE_DICTIONARY,
-        show_played=True):
+def print_courses(  # pylint: disable=dangerous-default-value
+    course_dict=COURSE_DICTIONARY, show_played=True
+):
     """Prints a set of Mario 64 courses.
 
     By default, this includes all of the courses, all listed as
@@ -53,13 +55,15 @@ def print_courses(                    # pylint: disable=dangerous-default-value
         if show_played:
             course_string += "({played}) "
 
-        course_string += "{name}".format(name=course_info['name'])
+        course_string += "{name}".format(name=course_info["name"])
 
         # Dim the text if the course has already been played
-        if course_info['played']:
-            print(Style.DIM + course_string.format(played='x') + Style.RESET_ALL)
+        if course_info["played"]:
+            print(
+                Style.DIM + course_string.format(played="x") + Style.RESET_ALL
+            )
         else:
-            print(course_string.format(played=' '))
+            print(course_string.format(played=" "))
 
 
 def format_time(seconds):
@@ -75,17 +79,17 @@ def format_time(seconds):
         of seconds passed in.
     """
     hours = seconds // 3600
-    minutes = (seconds - (hours*3600)) // 60
-    seconds = seconds - (hours*3600) - (minutes*60)
+    minutes = (seconds - (hours * 3600)) // 60
+    seconds = seconds - (hours * 3600) - (minutes * 60)
     time_elapsed = "{:02.0f}:{:02.0f}:{:06.3f}".format(hours, minutes, seconds)
     return time_elapsed
 
 
 def display_welcome_message():
     """Displays a welcome message to the user."""
-    print('-' * len(VERBOSE_NAME))
+    print("-" * len(VERBOSE_NAME))
     print(Style.BRIGHT + VERBOSE_NAME + Style.RESET_ALL)
-    print('-' * len(VERBOSE_NAME))
+    print("-" * len(VERBOSE_NAME))
     print()
     print(MARIO_ASCII_ART)
     print("visit us at " + HOME_URL + "!")
@@ -111,9 +115,9 @@ def get_player_names():
             # Good
             break
         except NameEmptyError:
-            print(Fore.RED
-                  + "Hey you! Enter a non-blank name!"
-                  + Style.RESET_ALL)
+            print(
+                Fore.RED + "Hey you! Enter a non-blank name!" + Style.RESET_ALL
+            )
 
     while True:
         try:
@@ -130,13 +134,15 @@ def get_player_names():
             # Good
             break
         except NameEmptyError:
-            print(Fore.RED
-                  + "Hey you! Enter a non-blank name!"
-                  + Style.RESET_ALL)
+            print(
+                Fore.RED + "Hey you! Enter a non-blank name!" + Style.RESET_ALL
+            )
         except AssertionError:
-            print(Fore.RED
-                  + "Yeesh! There can't be two {name}s!".format(name=player1)
-                  + Style.RESET_ALL)
+            print(
+                Fore.RED
+                + "Yeesh! There can't be two {name}s!".format(name=player1)
+                + Style.RESET_ALL
+            )
 
     # End the section with a new line
     print()
@@ -170,9 +176,11 @@ def get_number_of_rounds():
         except ValueError:
             print(Fore.RED + "One integer only please!" + Style.RESET_ALL)
         except AssertionError:
-            print(Fore.RED
-                  + "Yikes! Pick an allowed number of rounds!"
-                  + Style.RESET_ALL)
+            print(
+                Fore.RED
+                + "Yikes! Pick an allowed number of rounds!"
+                + Style.RESET_ALL
+            )
 
     # Print a new line for the next section
     print()
@@ -213,8 +221,9 @@ def get_courses(min_number_of_courses):
                 course_numbers = DEFAULT_COURSE_LIST
                 break
 
-            course_numbers = list(set(
-                [int(i) for i in course_numbers_string.split()]))
+            course_numbers = list(
+                set([int(i) for i in course_numbers_string.split()])
+            )
 
             # Validate
             allowed_course_numbers = COURSE_DICTIONARY.keys()
@@ -230,14 +239,19 @@ def get_courses(min_number_of_courses):
         except ValueError:
             print(Fore.RED + "Integers only please!" + Style.RESET_ALL)
         except AssertionError:
-            print(Fore.RED
-                  + "Yikes! Pick an allowed course number!"
-                  + Style.RESET_ALL)
+            print(
+                Fore.RED
+                + "Yikes! Pick an allowed course number!"
+                + Style.RESET_ALL
+            )
         except TooFewCoursesError:
-            print(Fore.RED
-                  + "Hey! Pick at least {number} courses!".format(
-                      number=min_number_of_courses)
-                  + Style.RESET_ALL)
+            print(
+                Fore.RED
+                + "Hey! Pick at least {number} courses!".format(
+                    number=min_number_of_courses
+                )
+                + Style.RESET_ALL
+            )
 
     # Print an empty line to end this section
     print()
@@ -259,9 +273,9 @@ def display_round_welcome_message(round_):
     """
     message = "ROUND {round_}".format(round_=round_)
     print()
-    print('-' * len(message))
+    print("-" * len(message))
     print(Style.BRIGHT + message + Style.RESET_ALL)
-    print('-' * len(message))
+    print("-" * len(message))
     print()
 
 
@@ -290,22 +304,26 @@ def get_course(course_selection, player, last_round=False):
             Style.BRIGHT
             + "Sudden death!"
             + Style.RESET_ALL
-            + " Collectively choose an available course!")
+            + " Collectively choose an available course!"
+        )
 
         # Using len on prompt_msg gives incorrect results
-        prompt_msg_length = len("Sudden death! "
-                                "Collectively choose an available course!")
+        prompt_msg_length = len(
+            "Sudden death! " "Collectively choose an available course!"
+        )
     else:
-        prompt_msg = (Style.BRIGHT
-                      + player
-                      + Style.RESET_ALL
-                      + "! Select an available course!")
+        prompt_msg = (
+            Style.BRIGHT
+            + player
+            + Style.RESET_ALL
+            + "! Select an available course!"
+        )
 
         # Using len on prompt_msg gives incorrect results
         prompt_msg_length = len(player + "! Select an available course!")
 
     print(prompt_msg)
-    print('-' * prompt_msg_length)
+    print("-" * prompt_msg_length)
     print_courses(course_selection)
     print()
 
@@ -317,9 +335,11 @@ def get_course(course_selection, player, last_round=False):
             course_number = int(course_number_string)
 
             # Validate
-            allowed_course_numbers = (
-                [number for number, info in course_selection.items()
-                 if not info['played']])
+            allowed_course_numbers = [
+                number
+                for number, info in course_selection.items()
+                if not info["played"]
+            ]
             assert course_number in allowed_course_numbers
 
             # We're good
@@ -327,14 +347,16 @@ def get_course(course_selection, player, last_round=False):
         except ValueError:
             print(Fore.RED + "Integers only please!" + Style.RESET_ALL)
         except AssertionError:
-            print(Fore.RED
-                  + "Yikes! Pick an allowed course number!"
-                  + Style.RESET_ALL)
+            print(
+                Fore.RED
+                + "Yikes! Pick an allowed course number!"
+                + Style.RESET_ALL
+            )
 
     # End section with an empty line
     print()
 
-    return (course_number, COURSE_DICTIONARY[course_number]['name'])
+    return (course_number, COURSE_DICTIONARY[course_number]["name"])
 
 
 def time_player(player, course_name):
@@ -355,11 +377,7 @@ def time_player(player, course_name):
         is_done = False
 
         # Tell the player it's their turn
-        print(
-            Style.BRIGHT
-            + player
-            + Style.RESET_ALL
-            + ", it's your turn!")
+        print(Style.BRIGHT + player + Style.RESET_ALL + ", it's your turn!")
         print()
 
         # Prompt to start
@@ -371,10 +389,12 @@ def time_player(player, course_name):
                 break
             else:
                 # Print help
-                print(Style.BRIGHT
-                      + "y - start the run\n"
-                      + "? - print help"
-                      + Style.RESET_ALL)
+                print(
+                    Style.BRIGHT
+                    + "y - start the run\n"
+                    + "? - print help"
+                    + Style.RESET_ALL
+                )
 
         start_time = time()
         print()
@@ -403,11 +423,13 @@ def time_player(player, course_name):
                         print(format_time(start_of_pause - start_time))
                     else:
                         # Print help
-                        print(Style.BRIGHT
-                              + "y - unpause the run\n"
-                              + "t - show elapsed time for the run\n"
-                              + "? - print help"
-                              + Style.RESET_ALL)
+                        print(
+                            Style.BRIGHT
+                            + "y - unpause the run\n"
+                            + "t - show elapsed time for the run\n"
+                            + "? - print help"
+                            + Style.RESET_ALL
+                        )
             elif answer == "r":
                 # Reset!
                 print("Resetting")
@@ -418,13 +440,15 @@ def time_player(player, course_name):
                 print(format_time(time() - start_time))
             else:
                 # Print help
-                print(Style.BRIGHT
-                      + "y - finish the run\n"
-                      + "p - pause the run\n"
-                      + "r - reset the run\n"
-                      + "t - show elapsed time for the run\n"
-                      + "? - print help"
-                      + Style.RESET_ALL)
+                print(
+                    Style.BRIGHT
+                    + "y - finish the run\n"
+                    + "p - pause the run\n"
+                    + "r - reset the run\n"
+                    + "t - show elapsed time for the run\n"
+                    + "? - print help"
+                    + Style.RESET_ALL
+                )
 
         # Break out of the reset loop if we're truly done
         if is_done:
@@ -442,11 +466,9 @@ def time_player(player, course_name):
         + Style.BRIGHT
         + course_name
         + Style.RESET_ALL
-        + ":")
-    print(
-        Style.BRIGHT
-        + format_time(total_time)
-        + Style.RESET_ALL)
+        + ":"
+    )
+    print(Style.BRIGHT + format_time(total_time) + Style.RESET_ALL)
     print()
 
     return total_time
@@ -466,58 +488,72 @@ def round_summary(this_round, mario_battle):
     # Title
     title = "ROUND {} SUMMARY".format(this_round.round_number)
 
-    print('-' * len(title))
+    print("-" * len(title))
     print(Style.BRIGHT + title + Style.RESET_ALL)
-    print('-' * len(title))
+    print("-" * len(title))
     print()
 
     # Round time
+    print(Style.BRIGHT + this_round.course_name + " time" + Style.RESET_ALL)
     print(
-        Style.BRIGHT
-        + this_round.course_name
-        + " time"
-        + Style.RESET_ALL)
-    print(("{:" + str(MAX_NAME_LENGTH) + "}\t{}").format(
-        this_round.winner,
-        format_time(this_round.winner_time)))
-    print(("{:" + str(MAX_NAME_LENGTH) + "}\t{}").format(
-        this_round.loser,
-        format_time(this_round.loser_time)))
+        ("{:" + str(MAX_NAME_LENGTH) + "}\t{}").format(
+            this_round.winner, format_time(this_round.winner_time)
+        )
+    )
+    print(
+        ("{:" + str(MAX_NAME_LENGTH) + "}\t{}").format(
+            this_round.loser, format_time(this_round.loser_time)
+        )
+    )
     print()
 
     if this_round.was_tie:
-        print(Style.BRIGHT
-              + "Round {}: TIE".format(this_round.round_number)
-              + Style.RESET_ALL)
+        print(
+            Style.BRIGHT
+            + "Round {}: TIE".format(this_round.round_number)
+            + Style.RESET_ALL
+        )
     else:
         print(
             Style.BRIGHT
             + "{} won round {} by {}!".format(
                 this_round.winner,
                 this_round.round_number,
-                format_time(this_round.loser_time - this_round.winner_time))
-            + Style.RESET_ALL)
+                format_time(this_round.loser_time - this_round.winner_time),
+            )
+            + Style.RESET_ALL
+        )
 
     print()
 
     # Total time
     print(Style.BRIGHT + "Total time" + Style.RESET_ALL)
-    print(("{:" + str(MAX_NAME_LENGTH) + "}\t{}").format(
-        this_round.winner,
-        format_time(mario_battle.get_player_total_time(this_round.winner))))
-    print(("{:" + str(MAX_NAME_LENGTH) + "}\t{}").format(
-        this_round.loser,
-        format_time(mario_battle.get_player_total_time(this_round.loser))))
+    print(
+        ("{:" + str(MAX_NAME_LENGTH) + "}\t{}").format(
+            this_round.winner,
+            format_time(mario_battle.get_player_total_time(this_round.winner)),
+        )
+    )
+    print(
+        ("{:" + str(MAX_NAME_LENGTH) + "}\t{}").format(
+            this_round.loser,
+            format_time(mario_battle.get_player_total_time(this_round.loser)),
+        )
+    )
     print()
 
     # Score
     print(Style.BRIGHT + "Score" + Style.RESET_ALL)
-    print(("{:" + str(MAX_NAME_LENGTH) + "}\t{}").format(
-        this_round.winner,
-        mario_battle.get_player_score(this_round.winner)))
-    print(("{:" + str(MAX_NAME_LENGTH) + "}\t{}").format(
-        this_round.loser,
-        mario_battle.get_player_score(this_round.loser)))
+    print(
+        ("{:" + str(MAX_NAME_LENGTH) + "}\t{}").format(
+            this_round.winner, mario_battle.get_player_score(this_round.winner)
+        )
+    )
+    print(
+        ("{:" + str(MAX_NAME_LENGTH) + "}\t{}").format(
+            this_round.loser, mario_battle.get_player_score(this_round.loser)
+        )
+    )
     print()
 
 
@@ -530,9 +566,9 @@ def final_summary(game_results):
     # Title
     title = "FINAL SUMMARY"
 
-    print('-' * len(title))
+    print("-" * len(title))
     print(Style.BRIGHT + title + Style.RESET_ALL)
-    print('-' * len(title))
+    print("-" * len(title))
     print()
 
     # Get winner and loser
@@ -543,7 +579,8 @@ def final_summary(game_results):
         print(
             Style.BRIGHT
             + "A tie! Rejoice in your shared victory!"
-            + Style.RESET_ALL)
+            + Style.RESET_ALL
+        )
 
         # Randomly assign winners and loser variables so we can use them
         # later
@@ -553,25 +590,34 @@ def final_summary(game_results):
         print(
             Style.BRIGHT
             + "{} won {}!".format(winner, VERBOSE_NAME)
-            + Style.RESET_ALL)
+            + Style.RESET_ALL
+        )
 
     # Final Score
     print()
     print(Style.BRIGHT + "Final Score" + Style.RESET_ALL)
-    print(("{:" + str(MAX_NAME_LENGTH) + "}\t{}").format(
-        winner,
-        game_results.get_player_score(winner)))
-    print(("{:" + str(MAX_NAME_LENGTH) + "}\t{}").format(
-        loser,
-        game_results.get_player_score(loser)))
+    print(
+        ("{:" + str(MAX_NAME_LENGTH) + "}\t{}").format(
+            winner, game_results.get_player_score(winner)
+        )
+    )
+    print(
+        ("{:" + str(MAX_NAME_LENGTH) + "}\t{}").format(
+            loser, game_results.get_player_score(loser)
+        )
+    )
     print()
 
     # Total time
     print(Style.BRIGHT + "Total time" + Style.RESET_ALL)
-    print(("{:" + str(MAX_NAME_LENGTH) + "}\t{}").format(
-        winner,
-        format_time(game_results.get_player_total_time(winner))))
-    print(("{:" + str(MAX_NAME_LENGTH) + "}\t{}").format(
-        loser,
-        format_time(game_results.get_player_total_time(loser))))
+    print(
+        ("{:" + str(MAX_NAME_LENGTH) + "}\t{}").format(
+            winner, format_time(game_results.get_player_total_time(winner))
+        )
+    )
+    print(
+        ("{:" + str(MAX_NAME_LENGTH) + "}\t{}").format(
+            loser, format_time(game_results.get_player_total_time(loser))
+        )
+    )
     print()

@@ -27,6 +27,7 @@ class MarioBattle:
         results: A list containing Round objects representing the
             results of each round.
     """
+
     def __init__(self, player1, player2, courses, num_rounds):
         """Initialize the battle.
 
@@ -144,8 +145,7 @@ class MarioBattle:
         loser = max(post_dict["times"], key=post_dict["times"].get)
 
         # Determine whether the round was a tie
-        is_tie = bool(
-            post_dict["times"][winner] == post_dict["times"][loser])
+        is_tie = bool(post_dict["times"][winner] == post_dict["times"][loser])
 
         # Record the results
         this_round = Round(
@@ -153,10 +153,10 @@ class MarioBattle:
             loser=loser,
             winner_time=post_dict["times"][winner],
             loser_time=post_dict["times"][loser],
-            course_name=(
-                self.courses[post_dict["course"]]["name"]),
+            course_name=(self.courses[post_dict["course"]]["name"]),
             round_number=post_dict["round"],
-            was_tie=is_tie)
+            was_tie=is_tie,
+        )
 
         self.results.append(this_round)
 
@@ -220,15 +220,17 @@ class Round:
         round_number: An integer specifying which around it is.
         was_tie: A boolean specifying whether the round was a tie.
     """
+
     def __init__(
-            self,
-            winner,
-            loser,
-            winner_time,
-            loser_time,
-            course_name,
-            round_number,
-            was_tie=False):
+        self,
+        winner,
+        loser,
+        winner_time,
+        loser_time,
+        course_name,
+        round_number,
+        was_tie=False,
+    ):
         """Store the round information.
 
         Args:
